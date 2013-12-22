@@ -15,7 +15,7 @@
 		definition file of the MVC's DispatcherServlet -->
 	<mvc:annotation-driven />
 
-	<ctx:component-scan base-package="com.google.developers.gdgfirenze.webgui" />
+	<ctx:component-scan base-package="net.cristcost.study" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

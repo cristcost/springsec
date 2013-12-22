@@ -19,10 +19,4 @@
 	   http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<!-- Beans of Client -->
-	<!-- <bean id="testClient" class="net.cristcost.smvc.hmi.TestClient" -->
-	<!-- init-method="osgiInit" destroy-method="osgiDestroy"> -->
-	<!-- <property name="service" ref="serviceFrontend" /> -->
-	<!-- </bean> -->
-
 </beans>

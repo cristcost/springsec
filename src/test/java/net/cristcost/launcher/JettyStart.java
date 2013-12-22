@@ -1,4 +1,4 @@
-package com.google.developers.gdgfirenze.webgui;
+package net.cristcost.launcher;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.bio.SocketConnector;
@@ -61,7 +61,7 @@ public class JettyStart {
     webCtx.setServer(server);
     webCtx.setContextPath("/");
 
-    webCtx.setDescriptor("src/test/resources/web/test-web.xml");
+    // webCtx.setDescriptor("src/test/resources/web/test-web.xml");
     webCtx.setBaseResource(resources);
 
     webCtx.setAttribute("org.eclipse.jetty.server.webapp.ContainerIncludeJarPattern",
