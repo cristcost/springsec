@@ -33,6 +33,7 @@
 					<li><c:out value="${name}" escapeXml="true" /></li>
 				</c:forEach>
 			</ul>
+			<p>Go <a href="index.html">home</a></p>
 		</div>
 	</div>
 </body>

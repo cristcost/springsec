@@ -28,6 +28,7 @@
 			</h1>
 			<p>GWT with Backend of Spring MVC</p>
 		</div>
+		<p>Go <a href="index.html">home</a></p>
 	</div>
 </body>
 </html>

@@ -160,9 +160,9 @@
 							org.springframework.web.servlet.view,
 							org.springframework.web.filter,
 							org.springframework.osgi.web.context.support,
-							<!-- org.springframework.security.web, -->
-							<!-- org.springframework.security.web.authentication, -->
-							<!-- org.springframework.security.provisioning, -->
+							org.springframework.security.web,
+							org.springframework.security.web.authentication,
+							org.springframework.security.provisioning,
 							org.springframework.beans.factory.config,
 							<!--com.google.gwt.user.client.rpc, !com.google.gwt.*.client.*, -->
 							*

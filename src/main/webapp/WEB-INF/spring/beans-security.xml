@@ -13,20 +13,21 @@
            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-<!-- 	<security:http auto-config="true"> -->
-<!-- 		<security:intercept-url pattern="/*.spring" access="ROLE_USER" /> -->
-<!-- 	</security:http> -->
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/*.spring"
+			access="ROLE_USER" />
+	</security:http>
 
-<!-- 	<security:user-service id="userService"> -->
-<!-- 		<security:user name="admin" password="sensormix" -->
-<!-- 			authorities="ROLE_USER,ROLE_ADMIN" /> -->
-<!-- 		<security:user name="user" password="sensormix" -->
-<!-- 			authorities="ROLE_USER" /> -->
-<!-- 	</security:user-service> -->
+	<security:user-service id="userService">
+		<security:user name="admin" password="123"
+			authorities="ROLE_USER,ROLE_ADMIN" />
+		<security:user name="user" password="123"
+			authorities="ROLE_USER" />
+	</security:user-service>
 
-<!-- 	<security:authentication-manager> -->
-<!-- 		<security:authentication-provider -->
-<!-- 			user-service-ref="userService" /> -->
-<!-- 	</security:authentication-manager> -->
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="userService" />
+	</security:authentication-manager>
 
 </beans>
