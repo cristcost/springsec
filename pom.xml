@@ -30,6 +30,43 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- Spring DM -->
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-web</artifactId>
+			<version>${spring-osgi.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>
+						com.springsource.javax.servlet
+					</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>
+						com.springsource.org.aopalliance
+					</artifactId>
+					<groupId>org.aopalliance</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.springframework.core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.springframework.aop</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.springframework.context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.springframework.beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- Spring Security Dependencies -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -55,12 +92,8 @@
 			<version>${jetty.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!--<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-dev</artifactId>
-			<version>${gwt.version}</version>
-			<scope>test</scope>
-		</dependency>-->
+		<!--<dependency> <groupId>com.google.gwt</groupId> <artifactId>gwt-dev</artifactId> 
+			<version>${gwt.version}</version> <scope>test</scope> </dependency> -->
 	</dependencies>
 
 	<build>
@@ -154,9 +187,7 @@
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Web-ContextPath>/${project.artifactId}</Web-ContextPath>
 						<Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
-						<!--<Export-Package>
-							!com.google.developers.gdgfirenze.gwt.client
-						</Export-Package>-->
+						<!--<Export-Package> !com.google.developers.gdgfirenze.gwt.client </Export-Package> -->
 						<Import-Package>
 							org.springframework.stereotype,
 							org.springframework.ui,
@@ -166,12 +197,11 @@
 							org.springframework.web.servlet.view,
 							org.springframework.web.filter,
 							org.springframework.osgi.web.context.support,
-							org.springframework.security.web,
-							org.springframework.security.web.authentication,
-							org.springframework.security.provisioning,
+							<!-- org.springframework.security.web, -->
+							<!-- org.springframework.security.web.authentication, -->
+							<!-- org.springframework.security.provisioning, -->
 							org.springframework.beans.factory.config,
-							<!--com.google.gwt.user.client.rpc,
-							!com.google.gwt.*.client.*,-->
+							<!--com.google.gwt.user.client.rpc, !com.google.gwt.*.client.*, -->
 							*
 						</Import-Package>
 					</instructions>
