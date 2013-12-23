@@ -13,16 +13,15 @@
            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-<!-- 	<security:http pattern="/sign.spring" security="none" /> -->
-<!-- 	<security:http pattern="/logout.spring" security="none" /> -->
-<!-- 	<security:http pattern="/login.spring*" security="none" /> -->
+	<!-- <security:http pattern="/sign.spring" security="none" /> -->
+	<!-- <security:http pattern="/logout.spring" security="none" /> -->
+	<!-- <security:http pattern="/login.spring*" security="none" /> -->
 
-	<security:http auto-config="true">
+	<security:http auto-config="true" disable-url-rewriting="true">
 		<security:intercept-url pattern="/*.spring"
 			access="ROLE_USER" />
 
-		<security:logout logout-url="/logout"
-			delete-cookies="JSESSIONID" />
+		<security:logout logout-url="/logout" delete-cookies="JSESSIONID" />
 		<security:form-login login-page="/login.html"
 			login-processing-url="/sign" password-parameter="pass"
 			username-parameter="user" authentication-failure-url="/login.html?login_error=1" />
