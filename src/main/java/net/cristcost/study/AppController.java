@@ -38,5 +38,22 @@ public class AppController {
     logger.info("Accessing test GWT page");
     return "gwt";
   }
-
+  
+  @RequestMapping("/login.spring")
+  public String login() {
+    logger.info("Accessing login form page");
+    return "login";
+  }
+  
+  @RequestMapping("/sign.spring")
+  public String sign() {
+    logger.info("Signing");
+    return "sign";
+  }
+  
+  @RequestMapping("/logout.spring")
+  public String logout() {
+    logger.info("Logging out");
+    return "logout";
+  }
 }
