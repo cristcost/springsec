@@ -34,7 +34,7 @@
 						</p>
 					</div>
 				</c:if>
-				<form class="" action="<c:url value='/sign.spring'/>" method="post">
+				<form action="<c:url value='/sign'/>" method="post">
 					<div class="form-group">
 						<input type="text" class="form-control" name="user"
 							placeholder="Username"> <input type="password"

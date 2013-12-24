@@ -27,33 +27,33 @@ public class AppController {
 
   private static final Logger logger = Logger.getLogger(AppController.class.getName());
 
-  @RequestMapping("/demo.spring")
+  @RequestMapping("/demo.html")
   public String demo() {
     logger.info("Accessing test GWT page");
     return "demo";
   }
 
-  @RequestMapping("/gwt.spring")
+  @RequestMapping("/gwt.html")
   public String gwt() {
     logger.info("Accessing test GWT page");
     return "gwt";
   }
-  
-  @RequestMapping("/login.spring")
+
+  @RequestMapping("/login.html")
   public String login() {
     logger.info("Accessing login form page");
     return "login";
   }
-  
-  @RequestMapping("/sign.spring")
-  public String sign() {
-    logger.info("Signing");
-    return "sign";
+
+  @RequestMapping("/index.html")
+  public String index() {
+    logger.info("Accessing index page");
+    return "index";
   }
-  
-  @RequestMapping("/logout.spring")
-  public String logout() {
-    logger.info("Logging out");
-    return "logout";
+
+  @RequestMapping("/page403.html")
+  public String page403() {
+    logger.info("Accessing unathorized page");
+    return "page403";
   }
 }

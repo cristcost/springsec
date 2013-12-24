@@ -18,14 +18,17 @@
 	<!-- <security:http pattern="/login.spring*" security="none" /> -->
 
 	<security:http auto-config="true" disable-url-rewriting="true">
-		<security:intercept-url pattern="/*.spring"
+		<security:intercept-url pattern="/demo.html"
 			access="ROLE_USER" />
+		<security:intercept-url pattern="/gwt.html"
+			access="ROLE_ADMIN" />
 
 		<security:logout logout-url="/logout" delete-cookies="JSESSIONID" />
 		<security:form-login login-page="/login.html"
 			login-processing-url="/sign" password-parameter="pass"
 			username-parameter="user" authentication-failure-url="/login.html?login_error=1" />
 		<security:http-basic />
+		<security:access-denied-handler error-page="/page403.html"/>
 	</security:http>
 
 	<security:user-service id="userService">
