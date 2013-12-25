@@ -17,11 +17,11 @@
 	<!-- <security:http pattern="/logout.spring" security="none" /> -->
 	<!-- <security:http pattern="/login.spring*" security="none" /> -->
 
-	<security:http auto-config="true" disable-url-rewriting="true">
+	<security:http auto-config="true" disable-url-rewriting="true" use-expressions="true">
 		<security:intercept-url pattern="/demo.html"
-			access="ROLE_USER" />
+			access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/gwt.html"
-			access="ROLE_ADMIN" />
+			access="hasRole('ROLE_ADMIN')" />
 
 		<security:logout logout-url="/logout" delete-cookies="JSESSIONID" />
 		<security:form-login login-page="/login.html"

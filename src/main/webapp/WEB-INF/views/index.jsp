@@ -19,7 +19,8 @@
 		</div>
 		<div id="gwtApp">
 			Go to <a href="gwt.html">GWT Demo Application</a> or to <a
-				href="demo.html">Simple Demo Application</a>
+				href="demo.html">Simple Demo Application</a> or the security <a
+				href="tags.html">Tags</a>
 		</div>
 		
 		<p>Do <a href="logout">logout</a></p>

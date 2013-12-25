@@ -50,6 +50,12 @@ public class AppController {
     logger.info("Accessing index page");
     return "index";
   }
+  
+  @RequestMapping("/tags.html")
+  public String tags() {
+    logger.info("Accessing tags page");
+    return "tags";
+  }
 
   @RequestMapping("/page403.html")
   public String page403() {

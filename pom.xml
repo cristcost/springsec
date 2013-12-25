@@ -41,6 +41,59 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring-security.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring-security.version}</version>
+		</dependency>
+
+		<!-- TODO: create a dependency module? -->
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-core</artifactId>
+			<version>${spring-osgi.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.springframework.aop</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.springframework.beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.springframework.context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.springframework.core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-web</artifactId>
+			<version>${spring-osgi.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.springframework.core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>
+						com.springsource.org.aopalliance
+					</artifactId>
+					<groupId>org.aopalliance</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>
+						com.springsource.javax.servlet
+					</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 		<!-- For debugging -->
 		<dependency>
@@ -150,7 +203,7 @@
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Web-ContextPath>/${project.artifactId}</Web-ContextPath>
 						<Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
-						<!--<Export-Package> !com.google.developers.gdgfirenze.gwt.client </Export-Package> -->
+						<!-- <Export-Package> fonts, scripts, styles, * </Export-Package> -->
 						<Import-Package>
 							org.springframework.stereotype,
 							org.springframework.ui,
