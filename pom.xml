@@ -216,7 +216,29 @@
 							org.springframework.security.web,
 							org.springframework.security.web.authentication,
 							org.springframework.security.provisioning,
+							org.springframework.security.authentication,
+							org.springframework.security.taglibs,
+							org.springframework.security.taglibs.authz,
 							org.springframework.beans.factory.config,
+							
+<!-- 							javax.el, -->
+<!-- 							javax.servlet, -->
+<!-- 							javax.servlet.http, -->
+<!-- 							javax.servlet.jsp, -->
+<!-- 							javax.servlet.jsp.jstl.core, -->
+<!-- 							javax.servlet.jsp.tagext, -->
+<!-- 							org.apache.activemq, -->
+<!-- 							org.apache.camel, -->
+<!-- 							org.apache.camel.spi, -->
+<!-- 							org.apache.jasper, -->
+<!-- 							org.apache.jasper.runtime, -->
+<!-- 							org.apache.taglibs.standard, -->
+<!-- 							org.apache.taglibs.standard.tag.common.core, -->
+<!-- 							org.apache.taglibs.standard.tag.rt.core, -->
+<!-- 							org.ops4j.pax.web.service, -->
+<!-- 							org.osgi.service.http, -->
+<!-- 							org.springframework.beans.factory.xml, -->
+							
 							<!--com.google.gwt.user.client.rpc, !com.google.gwt.*.client.*, -->
 							*
 						</Import-Package>
