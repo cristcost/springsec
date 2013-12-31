@@ -1,25 +1,13 @@
 package net.cristcost.launcher;
 
-import java.util.logging.Logger;
+public interface TestService {
 
-public class TestService {
-  private final static Logger logger = Logger.getLogger(TestService.class.getName());
+  void serviceOne();
 
-  public void serviceOne() {
-    logger.info("serviceOne");
-  }
+  void serviceTwo(String input);
 
-  public void serviceTwo(String input) {
-    logger.info("serviceTwo: " + input);
-  }
+  String serviceThree();
 
-  public String serviceThree() {
-    logger.info("serviceThree");
-    return "ok";
-  }
+  String serviceFour(String input);
 
-  public String serviceFour(String input) {
-    logger.info("serviceFour: " + input);
-    return "ok " + input;
-  }
 }
