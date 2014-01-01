@@ -11,9 +11,14 @@
            http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<!-- This seem to be required if beans are outside of the default beans 
-		definition file of the MVC's DispatcherServlet -->
 	<mvc:annotation-driven />
+
+	<!-- define handlers for mapping standard servlet and spring http request 
+		handlers -->
+	<bean name="simpleServletHandlerAdapter"
+		class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />
+	<bean name="httpRequestHandlerAdapter"
+		class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
 
 	<ctx:component-scan base-package="net.cristcost.study" />
 
@@ -25,6 +30,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- Ideally I would map every thing to DispatcherServlet and use the following, 
+		but don't works in OSGi! -->
 	<!-- <mvc:resources mapping="/fonts/**" location="/fonts/" /> -->
 	<!-- <mvc:resources mapping="/script/**" location="/script/" /> -->
 	<!-- <mvc:resources mapping="/styles/**" location="/styles/" /> -->
