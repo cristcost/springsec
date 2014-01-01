@@ -23,12 +23,21 @@
        http://www.springframework.org/schema/security 
        http://www.springframework.org/schema/security/spring-security.xsd">
 
+	<security:user-service id="userService">
+		<security:user name="admin" password="123"
+			authorities="ROLE_USER,ROLE_ADMIN" />
+		<security:user name="user" password="123" authorities="ROLE_USER" />
+	</security:user-service>
 
-	<security:global-method-security>
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			user-service-ref="userService" />
+	</security:authentication-manager>
 
+	<security:global-method-security
+		pre-post-annotations="enabled">
 		<security:protect-pointcut access="ROLE_ADMIN"
 			expression="execution(* net.cristcost.launcher.TestService.*(..))" />
-
 	</security:global-method-security>
 
 	<bean id="testService" class="net.cristcost.launcher.TestServiceImpl" />
@@ -36,6 +45,7 @@
 	<bean id="testClient" class="net.cristcost.launcher.TestClient"
 		init-method="startMe">
 		<property name="service" ref="testService" />
+		<property name="authenticationManager" ref="authenticationManager"/>
 	</bean>
 
 </beans>
