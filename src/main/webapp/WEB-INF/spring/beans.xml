@@ -31,8 +31,8 @@
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="/standard.servlet">testServlet</prop>
-				<prop key="/http-request-handler.servlet">testHttpRequestHandler</prop>
+				<prop key="/secured/standard.servlet">testServlet</prop>
+				<prop key="/secured/http-request-handler.servlet">testHttpRequestHandler</prop>
 				<prop key="/unfiltered/standard.servlet">testServlet</prop>
 				<prop key="/unfiltered/http-request-handler.servlet">testHttpRequestHandler</prop>
 			</props>

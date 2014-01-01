@@ -15,6 +15,8 @@
 package net.cristcost.study;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,13 +31,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @SuppressWarnings("serial")
 public class ServiceServlet extends HttpServlet {
-  
+
   private AuthenticationManager authenticationManager = null;
-  
+
   public void setAuthenticationManager(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
   }
-  
+
   @Override
   public void service(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -45,11 +47,18 @@ public class ServiceServlet extends HttpServlet {
     PrintWriter writer = response.getWriter();
 
     writer.println("Hello from a standard HttpServlet");
-    
+
     if (authenticationManager != null) {
       writer.println("I've been injected with the AuthenticationManager");
     } else {
       writer.println("I've not been injected with the AuthenticationManager");
+    }
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null) {
+      writer.println("There is an Authentication of type: " + authentication.getClass().getName());
+    } else {
+      writer.println("There is no Authentication!");
     }
   }
 }

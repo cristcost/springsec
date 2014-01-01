@@ -14,9 +14,9 @@
 <title><c:out value="${title}" /></title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="scripts/jquery.js"></script>
-<script src="scripts/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="${pageContext.request.contextPath}/scripts/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/scripts/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -33,7 +33,9 @@
 					<li><c:out value="${name}" escapeXml="true" /></li>
 				</c:forEach>
 			</ul>
-			<p>Go <a href="index.html">home</a></p>
+			<p>
+				Go <a href="${pageContext.request.contextPath}/index.html">home</a>
+			</p>
 		</div>
 	</div>
 </body>

@@ -14,19 +14,19 @@
            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<security:http auto-config="true" disable-url-rewriting="true" use-expressions="true">
-		<security:intercept-url pattern="/demo.html"
+		<security:intercept-url pattern="/secured/demo.html"
 			access="hasRole('ROLE_USER')" />
-		<security:intercept-url pattern="/gwt.html"
+		<security:intercept-url pattern="/secured/gwt.html"
 			access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/http-request-handler.servlet"
+		<security:intercept-url pattern="/secured/http-request-handler.servlet"
 			access="!isAuthenticated()" />
-		<security:intercept-url pattern="/standard.servlet"
+		<security:intercept-url pattern="/secured/standard.servlet"
 			access="isAuthenticated()" />
 
-		<security:logout logout-url="/logout" delete-cookies="JSESSIONID" />
-		<security:form-login login-page="/login.html"
-			login-processing-url="/sign" password-parameter="pass"
-			username-parameter="user" authentication-failure-url="/login.html?login_error=1" />
+		<security:logout logout-url="/secured/logout" delete-cookies="JSESSIONID" />
+		<security:form-login login-page="/secured/login.html"
+			login-processing-url="/secured/sign" password-parameter="pass"
+			username-parameter="user" authentication-failure-url="/secured/login.html?login_error=1" />
 		<security:http-basic />
 		<security:access-denied-handler error-page="/page403.html"/>
 	</security:http>

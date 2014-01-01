@@ -14,7 +14,7 @@
 <title><c:out value="${title}" /></title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css" rel="stylesheet" media="screen">
 <!-- <script type="text/javascript" src="gwtdemoapp/gwtdemoapp.nocache.js"></script> -->
 </head>
 <body>
@@ -28,7 +28,7 @@
 			</h1>
 			<p>GWT with Backend of Spring MVC</p>
 		</div>
-		<p>Go <a href="index.html">home</a></p>
+		<p>Go <a href="${pageContext.request.contextPath}/index.html">home</a></p>
 	</div>
 </body>
 </html>

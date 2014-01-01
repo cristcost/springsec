@@ -15,6 +15,8 @@
 package net.cristcost.study;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.HttpRequestHandler;
 
 import java.io.IOException;
@@ -49,6 +51,13 @@ public class ServiceHttpRequestHandler implements HttpRequestHandler {
       writer.println("I've been injected with the AuthenticationManager");
     } else {
       writer.println("I've not been injected with the AuthenticationManager");
+    }
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null) {
+      writer.println("There is an Authentication of type: " + authentication.getClass().getName());
+    } else {
+      writer.println("There is no Authentication!");
     }
   }
 }
