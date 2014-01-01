@@ -19,4 +19,23 @@
 	   http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
+
+	<bean id="testServlet" class="net.cristcost.study.ServiceServlet">
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+
+	<bean id="testHttpRequestHandler" class="net.cristcost.study.ServiceHttpRequestHandler">
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/standard.servlet">testServlet</prop>
+				<prop key="/http-request-handler.servlet">testHttpRequestHandler</prop>
+				<prop key="/unfiltered/standard.servlet">testServlet</prop>
+				<prop key="/unfiltered/http-request-handler.servlet">testHttpRequestHandler</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
