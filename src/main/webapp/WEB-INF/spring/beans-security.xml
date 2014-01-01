@@ -13,7 +13,8 @@
            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<security:http auto-config="true" disable-url-rewriting="true" use-expressions="true">
+	<security:http auto-config="true" disable-url-rewriting="true"
+		use-expressions="true">
 		<security:intercept-url pattern="/secured/demo.html"
 			access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/secured/gwt.html"
@@ -23,13 +24,21 @@
 		<security:intercept-url pattern="/secured/standard.servlet"
 			access="isAuthenticated()" />
 
-		<security:logout logout-url="/secured/logout" delete-cookies="JSESSIONID" />
+		<security:logout logout-url="/secured/logout"
+			delete-cookies="JSESSIONID" />
 		<security:form-login login-page="/secured/login.html"
 			login-processing-url="/secured/sign" password-parameter="pass"
 			username-parameter="user" authentication-failure-url="/secured/login.html?login_error=1" />
 		<security:http-basic />
-		<security:access-denied-handler error-page="/page403.html"/>
+		<security:access-denied-handler
+			error-page="/page403.html" />
 	</security:http>
+
+	<security:global-method-security
+		pre-post-annotations="enabled">
+		<security:protect-pointcut access="ROLE_ADMIN"
+			expression="execution(* net.cristcost.study.TestService.*(..))" />
+	</security:global-method-security>
 
 	<security:user-service id="userService">
 		<security:user name="admin" password="123"
