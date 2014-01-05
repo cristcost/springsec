@@ -22,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.io.PrintWriter;
@@ -32,6 +33,23 @@ import javax.servlet.http.HttpServletRequest;
  * The Class SecurityStudyUtil.
  */
 public class SecurityStudyUtil {
+
+  public static void testSecurity(HttpServletRequest request, PrintWriter writer,
+      AuthenticationManager authenticationManager, TestService service) {
+
+    SecurityStudyUtil.wait(writer, request, authenticationManager);
+    SecurityContext oldContext = null;
+    try {
+      oldContext = SecurityStudyUtil.authenticate(writer, request, authenticationManager);
+
+      SecurityStudyUtil.dumpSecurityInformation(writer, authenticationManager);
+
+      SecurityStudyUtil.invokeSecuredBean(writer, service);
+    } finally {
+      SecurityStudyUtil.clearAuthentication(writer, oldContext);
+      // Note: I'm not resetting to anonymous, do it with SecurityStudyUtil.initAnonymous();
+    }
+  }
 
   public static void dumpSecurityInformation(PrintWriter writer,
       AuthenticationManager authenticationManager) {
@@ -67,8 +85,11 @@ public class SecurityStudyUtil {
     writer.println();
   }
 
-  public static void authenticate(PrintWriter writer, HttpServletRequest request,
+  public static SecurityContext authenticate(PrintWriter writer, HttpServletRequest request,
       AuthenticationManager authenticationManager) {
+
+    SecurityContext initialContext = SecurityContextHolder.getContext();
+
     if (request.getParameter("user") != null) {
 
       UsernamePasswordAuthenticationToken authRequest =
@@ -76,6 +97,7 @@ public class SecurityStudyUtil {
               request.getParameter("pass"));
       try {
         Authentication authentication = authenticationManager.authenticate(authRequest);
+        SecurityContextHolder.setContext(SecurityContextHolder.createEmptyContext());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         writer.println("Authenticating user: " + request.getParameter("user"));
       } catch (AuthenticationException e) {
@@ -83,6 +105,8 @@ public class SecurityStudyUtil {
       }
       writer.println();
     }
+
+    return initialContext;
   }
 
   public static void initAnonymous() {
@@ -92,8 +116,12 @@ public class SecurityStudyUtil {
     SecurityContextHolder.getContext().setAuthentication(auth);
   }
 
-  public static void clearAuthentication() {
-    SecurityContextHolder.clearContext();
+  public static void clearAuthentication(PrintWriter writer, SecurityContext oldContext) {
+    if (oldContext != SecurityContextHolder.getContext()) {
+      SecurityContextHolder.clearContext();
+      SecurityContextHolder.setContext(oldContext);
+      writer.println("@Restoring older context after secured session");
+    }
   }
 
   public static void wait(PrintWriter writer, HttpServletRequest request,

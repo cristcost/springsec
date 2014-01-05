@@ -51,17 +51,7 @@ public class ServiceHttpRequestHandler implements HttpRequestHandler {
 
     writer.println("Hello from a Spring's HttpRequestHandler");
 
-    SecurityStudyUtil.wait(writer, request, authenticationManager);
-
-    try {
-      SecurityStudyUtil.authenticate(writer, request, authenticationManager);
-
-      SecurityStudyUtil.dumpSecurityInformation(writer, authenticationManager);
-
-      SecurityStudyUtil.invokeSecuredBean(writer, service);
-    } finally {
-      SecurityStudyUtil.clearAuthentication();
-      // Note: I'm not resetting to anonymous, do it with SecurityStudyUtil.initAnonymous();
-    }
+    SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
   }
+
 }
