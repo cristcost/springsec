@@ -1,7 +1,7 @@
 Spring Security on Servicemix Tests
 ===================================
 
-A project with my tests for studing if Spring Security can work on ServiceMix/Karaf
+A project with my tests for studying if Spring Security can work on ServiceMix/Karaf
 
 Please note building this project require the "parent" from this other project of mine: https://github.com/cristcost/sensormix/tree/master/parent
 
