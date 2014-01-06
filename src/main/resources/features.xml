@@ -7,6 +7,8 @@
 
   <feature name="springsec" version="${project.version}">
     <feature>spring-dm-web</feature>
+
+    <bundle start-level="50">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aspectj/${smx-aspectj.version}</bundle>
     
     <bundle start-level="50">mvn:org.springframework.security/spring-security-core/${spring-security.version}</bundle>
     <bundle start-level="50">mvn:org.springframework.security/spring-security-config/${spring-security.version}</bundle>
