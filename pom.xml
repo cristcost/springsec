@@ -222,7 +222,9 @@
 							org.springframework.web.context,
 							org.springframework.web.bind.annotation,
 							org.springframework.web.servlet,
+							org.springframework.web.servlet.handler,
 							org.springframework.web.servlet.view,
+							org.springframework.web.servlet.mvc,
 							org.springframework.web.filter,
 							org.springframework.osgi.web.context.support,
 							org.springframework.security.web,
@@ -232,6 +234,7 @@
 							org.springframework.security.taglibs,
 							org.springframework.security.taglibs.authz,
 							org.springframework.beans.factory.config,
+							
 
 							<!-- javax.el, -->
 							<!-- javax.servlet, -->
