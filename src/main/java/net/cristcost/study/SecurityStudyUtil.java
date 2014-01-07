@@ -34,20 +34,35 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SecurityStudyUtil {
 
-  public static void testSecurity(HttpServletRequest request, PrintWriter writer,
-      AuthenticationManager authenticationManager, TestService service) {
+  public static SecurityContext authenticate(PrintWriter writer, HttpServletRequest request,
+      AuthenticationManager authenticationManager) {
 
-    SecurityStudyUtil.wait(writer, request, authenticationManager);
-    SecurityContext oldContext = null;
-    try {
-      oldContext = SecurityStudyUtil.authenticate(writer, request, authenticationManager);
+    SecurityContext initialContext = SecurityContextHolder.getContext();
 
-      SecurityStudyUtil.dumpSecurityInformation(writer, authenticationManager);
+    if (request.getParameter("user") != null) {
 
-      SecurityStudyUtil.invokeSecuredBean(writer, service);
-    } finally {
-      SecurityStudyUtil.clearAuthentication(writer, oldContext);
-      // Note: I'm not resetting to anonymous, do it with SecurityStudyUtil.initAnonymous();
+      UsernamePasswordAuthenticationToken authRequest =
+          new UsernamePasswordAuthenticationToken(request.getParameter("user"),
+              request.getParameter("pass"));
+      try {
+        Authentication authentication = authenticationManager.authenticate(authRequest);
+        SecurityContextHolder.setContext(SecurityContextHolder.createEmptyContext());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        writer.println("Authenticating user: " + request.getParameter("user"));
+      } catch (AuthenticationException e) {
+        writer.println("! Error while Authenticating: " + e.getMessage());
+      }
+      writer.println();
+    }
+
+    return initialContext;
+  }
+
+  public static void clearAuthentication(PrintWriter writer, SecurityContext oldContext) {
+    if (oldContext != SecurityContextHolder.getContext()) {
+      SecurityContextHolder.clearContext();
+      SecurityContextHolder.setContext(oldContext);
+      writer.println("@Restoring older context after secured session");
     }
   }
 
@@ -85,58 +100,11 @@ public class SecurityStudyUtil {
     writer.println();
   }
 
-  public static SecurityContext authenticate(PrintWriter writer, HttpServletRequest request,
-      AuthenticationManager authenticationManager) {
-
-    SecurityContext initialContext = SecurityContextHolder.getContext();
-
-    if (request.getParameter("user") != null) {
-
-      UsernamePasswordAuthenticationToken authRequest =
-          new UsernamePasswordAuthenticationToken(request.getParameter("user"),
-              request.getParameter("pass"));
-      try {
-        Authentication authentication = authenticationManager.authenticate(authRequest);
-        SecurityContextHolder.setContext(SecurityContextHolder.createEmptyContext());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        writer.println("Authenticating user: " + request.getParameter("user"));
-      } catch (AuthenticationException e) {
-        writer.println("! Error while Authenticating: " + e.getMessage());
-      }
-      writer.println();
-    }
-
-    return initialContext;
-  }
-
   public static void initAnonymous() {
     AnonymousAuthenticationToken auth =
         new AnonymousAuthenticationToken("anonymous", "anonymousUser",
             AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS"));
     SecurityContextHolder.getContext().setAuthentication(auth);
-  }
-
-  public static void clearAuthentication(PrintWriter writer, SecurityContext oldContext) {
-    if (oldContext != SecurityContextHolder.getContext()) {
-      SecurityContextHolder.clearContext();
-      SecurityContextHolder.setContext(oldContext);
-      writer.println("@Restoring older context after secured session");
-    }
-  }
-
-  public static void wait(PrintWriter writer, HttpServletRequest request,
-      AuthenticationManager authenticationManager) {
-    if (request.getParameter("entropy") != null) {
-      try {
-        int waitTime = Integer.parseInt(request.getParameter("entropy"));
-        Thread.sleep(waitTime);
-        writer.println("* Waiting for creating Thread entropy: " + waitTime + " ms");
-
-      } catch (NumberFormatException | InterruptedException e) {
-        writer.println("* Exception while creating Thread entropy: " + e.getMessage());
-      }
-      writer.println();
-    }
   }
 
   public static void invokeSecuredBean(PrintWriter writer, TestService service) {
@@ -171,5 +139,37 @@ public class SecurityStudyUtil {
       writer.println("Service bean not injected!");
     }
     writer.println();
+  }
+
+  public static void testSecurity(HttpServletRequest request, PrintWriter writer,
+      AuthenticationManager authenticationManager, TestService service) {
+
+    SecurityStudyUtil.wait(writer, request, authenticationManager);
+    SecurityContext oldContext = null;
+    try {
+      oldContext = SecurityStudyUtil.authenticate(writer, request, authenticationManager);
+
+      SecurityStudyUtil.dumpSecurityInformation(writer, authenticationManager);
+
+      SecurityStudyUtil.invokeSecuredBean(writer, service);
+    } finally {
+      SecurityStudyUtil.clearAuthentication(writer, oldContext);
+      // Note: I'm not resetting to anonymous, do it with SecurityStudyUtil.initAnonymous();
+    }
+  }
+
+  public static void wait(PrintWriter writer, HttpServletRequest request,
+      AuthenticationManager authenticationManager) {
+    if (request.getParameter("entropy") != null) {
+      try {
+        int waitTime = Integer.parseInt(request.getParameter("entropy"));
+        Thread.sleep(waitTime);
+        writer.println("* Waiting for creating Thread entropy: " + waitTime + " ms");
+
+      } catch (NumberFormatException | InterruptedException e) {
+        writer.println("* Exception while creating Thread entropy: " + e.getMessage());
+      }
+      writer.println();
+    }
   }
 }

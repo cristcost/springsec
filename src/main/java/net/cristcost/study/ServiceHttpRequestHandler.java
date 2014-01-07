@@ -33,14 +33,6 @@ public class ServiceHttpRequestHandler implements HttpRequestHandler {
 
   private TestService service = null;
 
-  public void setService(TestService service) {
-    this.service = service;
-  }
-
-  public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-    this.authenticationManager = authenticationManager;
-  }
-
   @Override
   public void handleRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -52,6 +44,14 @@ public class ServiceHttpRequestHandler implements HttpRequestHandler {
     writer.println("Hello from a Spring's HttpRequestHandler");
 
     SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
+  }
+
+  public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+    this.authenticationManager = authenticationManager;
+  }
+
+  public void setService(TestService service) {
+    this.service = service;
   }
 
 }

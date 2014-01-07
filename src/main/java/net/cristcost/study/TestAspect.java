@@ -14,21 +14,25 @@
  */
 package net.cristcost.study;
 
-import java.util.List;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 /**
- * The Interface TestService.
+ * The Class TestAspect.
  */
-public interface TestService {
+public class TestAspect {
+  public Object traceInvocation(ProceedingJoinPoint joinpoint) {
+    Object ret = null;
+    System.out.println("Processing aspect in: " + joinpoint.getSignature());
+    long start = System.currentTimeMillis();
+    try {
+      ret = joinpoint.proceed();
+    } catch (Throwable e) {
+      System.out.println("Exception in aspect: " + e.getMessage());
+    }
+    long end = System.currentTimeMillis();
 
-  List<String> serviceFive();
-
-  String serviceFour(String input);
-
-  void serviceOne();
-
-  String serviceThree();
-
-  void serviceTwo(String input);
-
+    System.out.println("@executed in " + (end - start) + " ms");
+    System.out.println();
+    return ret;
+  }
 }

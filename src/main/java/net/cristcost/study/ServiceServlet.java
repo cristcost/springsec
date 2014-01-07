@@ -34,14 +34,6 @@ public class ServiceServlet extends HttpServlet {
 
   private TestService service = null;
 
-  public void setService(TestService service) {
-    this.service = service;
-  }
-
-  public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-    this.authenticationManager = authenticationManager;
-  }
-
   @Override
   public void service(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
@@ -53,5 +45,13 @@ public class ServiceServlet extends HttpServlet {
     writer.println("Hello from a standard HttpServlet");
 
     SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
+  }
+
+  public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+    this.authenticationManager = authenticationManager;
+  }
+
+  public void setService(TestService service) {
+    this.service = service;
   }
 }

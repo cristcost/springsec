@@ -5,11 +5,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 
-public class TestLauncher {
+public class TestAopLauncher {
   public static void main(String[] args) throws IOException {
 
     ConfigurableApplicationContext springContext =
-        new ClassPathXmlApplicationContext("META-INF/spring/test-sec.xml");
+        new ClassPathXmlApplicationContext("META-INF/spring/test-aop.xml");
 
     System.out.println("Press ENTER to exit");
     System.in.read();

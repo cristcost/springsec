@@ -27,31 +27,6 @@ public class AppController {
 
   private static final Logger logger = Logger.getLogger(AppController.class.getName());
 
-  @RequestMapping("/secured/login.html")
-  public String login() {
-    logger.info("Accessing login form page");
-    return "login";
-  }
-
-  @RequestMapping("/index.html")
-  public String index() {
-    logger.info("Accessing index page");
-    return "index";
-  }
-
-  @RequestMapping("/page403.html")
-  public String page403() {
-    logger.info("Accessing unathorized page");
-    return "page403";
-  }
-  
-  
-  @RequestMapping("/secured/tags.html")
-  public String tags() {
-    logger.info("Accessing tags page");
-    return "tags";
-  }
-  
   @RequestMapping("/secured/demo.html")
   public String demo() {
     logger.info("Accessing test GWT page");
@@ -62,6 +37,30 @@ public class AppController {
   public String gwt() {
     logger.info("Accessing test GWT page");
     return "gwt";
+  }
+
+  @RequestMapping("/index.html")
+  public String index() {
+    logger.info("Accessing index page");
+    return "index";
+  }
+
+  @RequestMapping("/secured/login.html")
+  public String login() {
+    logger.info("Accessing login form page");
+    return "login";
+  }
+
+  @RequestMapping("/page403.html")
+  public String page403() {
+    logger.info("Accessing unathorized page");
+    return "page403";
+  }
+
+  @RequestMapping("/secured/tags.html")
+  public String tags() {
+    logger.info("Accessing tags page");
+    return "tags";
   }
 
 }

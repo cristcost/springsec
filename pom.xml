@@ -58,7 +58,6 @@
 			<version>${servlet-api.version}</version>
 		</dependency>
 
-
 		<!-- TODO: create a dependency module? -->
 		<dependency>
 			<groupId>org.springframework.osgi</groupId>

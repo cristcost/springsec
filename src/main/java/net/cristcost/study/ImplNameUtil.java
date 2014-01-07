@@ -14,21 +14,11 @@
  */
 package net.cristcost.study;
 
-import java.util.List;
-
 /**
- * The Interface TestService.
+ * The Interface ImplNameUtil.
  */
-public interface TestService {
+public interface ImplNameUtil {
 
-  List<String> serviceFive();
-
-  String serviceFour(String input);
-
-  void serviceOne();
-
-  String serviceThree();
-
-  void serviceTwo(String input);
+  String getImplName();
 
 }

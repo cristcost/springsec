@@ -22,12 +22,12 @@ import java.util.logging.Logger;
 /**
  * The Class TestServiceImpl.
  */
-public class TestServiceImpl implements TestService, ImplNameUtil {
-  private static final Logger logger = Logger.getLogger(TestServiceImpl.class.getName());
+public class SimpleServiceImpl implements TestService, ImplNameUtil {
+  private static final Logger logger = Logger.getLogger(SimpleServiceImpl.class.getName());
 
   @Override
   public String getImplName() {
-    return TestServiceImpl.class.getSimpleName();
+    return SimpleServiceImpl.class.getSimpleName();
   }
 
   @Override
