@@ -26,8 +26,9 @@
 
 	<aop:config>
 		<aop:aspect ref="testAspect">
-			<aop:around method="traceInvocation"
-				pointcut="execution(* net.cristcost.study.TestServiceImpl.service*(..))" />
+			<!-- <aop:around method="traceInvocation" -->
+			<!-- pointcut="execution(* net.cristcost.study.TestServiceImpl.service*(..))" 
+				/> -->
 			<!-- <aop:around method="traceInvocation" -->
 			<!-- pointcut="bean(annotatedService) and execution(* *.service*(..))" 
 				/> -->

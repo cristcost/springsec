@@ -51,11 +51,21 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
+			<!-- <groupId>org.apache.servicemix.bundles</groupId> -->
+			<!-- <artifactId>org.apache.servicemix.bundles.aspectj</artifactId> -->
+			<!-- <version>${smx-aspectj.version}</version> -->
 		</dependency>
+
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>jsr250-api</artifactId>
+			<version>${jsr250.version}</version>
 		</dependency>
 
 		<!-- TODO: create a dependency module? -->
@@ -234,80 +244,81 @@
 							org.springframework.security.taglibs.authz,
 							org.springframework.beans.factory.config,
 
-							<!-- Extra imports required to make AspectJ work -->
-							javax.xml.transform,
-							org.aopalliance.aop,
-							org.aopalliance.intercept,
+							<!-- extra imports detected manually -->
+							org.springframework.security.access.expression.method,
+							<!-- org.springframework.security.config.method, -->
 							org.springframework.aop,
 							org.springframework.aop.framework,
-							org.springframework.beans,
-							org.springframework.beans.factory,
-							org.springframework.beans.support,
-							org.springframework.context,
-							org.springframework.context.support,
-							org.springframework.core,
-							org.springframework.core.convert,
-							org.springframework.core.io,
-							org.springframework.expression,
-							org.springframework.expression.spel.support,
-							org.springframework.format.support,
-							org.springframework.http,
-							org.springframework.http.converter,
-							org.springframework.http.converter.xml,
-							org.springframework.security.access.expression,
-							org.springframework.security.access.expression.method,
-							org.springframework.security.access.hierarchicalroles,
-							org.springframework.security.access.intercept,
-							org.springframework.security.access.intercept.aopalliance,
-							org.springframework.security.access.method,
-							org.springframework.security.access.prepost,
-							org.springframework.security.access.vote,
-							org.springframework.security.authentication.dao,
-							org.springframework.security.config.authentication,
-							org.springframework.security.config.http,
-							org.springframework.security.config.method,
-							org.springframework.security.core.authority.mapping,
-							org.springframework.security.core.userdetails,
-							org.springframework.security.core.userdetails.memory,
-							org.springframework.security.web.access,
-							org.springframework.security.web.access.expression,
-							org.springframework.security.web.access.intercept,
-							org.springframework.security.web.authentication.logout,
-							org.springframework.security.web.authentication.session,
-							org.springframework.security.web.authentication.www,
-							org.springframework.security.web.context,
-							org.springframework.security.web.firewall,
-							org.springframework.security.web.savedrequest,
-							org.springframework.security.web.servletapi,
-							org.springframework.security.web.util,
-							org.springframework.util,
-							org.springframework.validation,
-							org.springframework.web.bind,
-							org.springframework.web.bind.support,
-							org.springframework.web.context.request,
-							org.springframework.web.context.support,
-							org.springframework.web.servlet.mvc.annotation,
-							org.springframework.web.servlet.mvc.multiaction,
-							org.springframework.web.servlet.support,
-							org.springframework.web.util,
+							org.aopalliance.aop,
+							<!-- org.springframework.format.support, -->
+							<!-- org.springframework.beans.factory, -->
+							<!-- org.springframework.core.convert.support, -->
+							<!-- org.springframework.web.servlet.mvc.annotation, -->
+							<!-- org.springframework.web.context.support, -->
+							<!-- org.springframework.context.support, -->
+							<!-- org.springframework.web.bind.support, -->
+							<!-- org.springframework.http.converter, -->
+							<!-- org.aspectj.weaver, -->
+							<!-- org.springframework.core.io, -->
+							<!-- org.springframework.http.converter.xml, -->
 
-							<!-- javax.el, -->
-							<!-- javax.servlet, -->
-							<!-- javax.servlet.http, -->
-							<!-- javax.servlet.jsp, -->
-							<!-- javax.servlet.jsp.jstl.core, -->
-							<!-- javax.servlet.jsp.tagext, -->
-							<!-- org.apache.activemq, -->
-							<!-- org.apache.camel, -->
-							<!-- org.apache.camel.spi, -->
-							<!-- org.apache.jasper, -->
-							<!-- org.apache.jasper.runtime, -->
-							<!-- org.apache.taglibs.standard, -->
-							<!-- org.apache.taglibs.standard.tag.common.core, -->
-							<!-- org.apache.taglibs.standard.tag.rt.core, -->
-							<!-- org.ops4j.pax.web.service, -->
-							<!-- org.osgi.service.http, -->
-							<!-- org.springframework.beans.factory.xml, -->
+
+							<!-- Extra imports required to make AspectJ work -->
+							<!-- javax.xml.transform, -->
+							<!-- org.aopalliance.aop, -->
+							<!-- org.aopalliance.intercept, -->
+							<!-- org.springframework.aop, -->
+							<!-- org.springframework.aop.framework, -->
+							<!-- org.springframework.beans, -->
+							<!-- org.springframework.beans.factory, -->
+							<!-- org.springframework.beans.support, -->
+							<!-- org.springframework.context, -->
+							<!-- org.springframework.context.support, -->
+							<!-- org.springframework.core, -->
+							<!-- org.springframework.core.convert, -->
+							<!-- org.springframework.core.io, -->
+							<!-- org.springframework.expression, -->
+							<!-- org.springframework.expression.spel.support, -->
+							<!-- org.springframework.format.support, -->
+							<!-- org.springframework.http, -->
+							<!-- org.springframework.http.converter, -->
+							<!-- org.springframework.http.converter.xml, -->
+							<!-- org.springframework.security.access.expression, -->
+							<!-- org.springframework.security.access.expression.method, -->
+							<!-- org.springframework.security.access.hierarchicalroles, -->
+							<!-- org.springframework.security.access.intercept, -->
+							<!-- org.springframework.security.access.intercept.aopalliance, -->
+							<!-- org.springframework.security.access.method, -->
+							<!-- org.springframework.security.access.prepost, -->
+							<!-- org.springframework.security.access.vote, -->
+							<!-- org.springframework.security.authentication.dao, -->
+							<!-- org.springframework.security.config.authentication, -->
+							<!-- org.springframework.security.config.http, -->
+							<!-- org.springframework.security.config.method, -->
+							<!-- org.springframework.security.core.authority.mapping, -->
+							<!-- org.springframework.security.core.userdetails, -->
+							<!-- org.springframework.security.core.userdetails.memory, -->
+							<!-- org.springframework.security.web.access, -->
+							<!-- org.springframework.security.web.access.expression, -->
+							<!-- org.springframework.security.web.access.intercept, -->
+							<!-- org.springframework.security.web.authentication.logout, -->
+							<!-- org.springframework.security.web.authentication.session, -->
+							<!-- org.springframework.security.web.authentication.www, -->
+							<!-- org.springframework.security.web.context, -->
+							<!-- org.springframework.security.web.firewall, -->
+							<!-- org.springframework.security.web.savedrequest, -->
+							<!-- org.springframework.security.web.servletapi, -->
+							<!-- org.springframework.security.web.util, -->
+							<!-- org.springframework.util, -->
+							<!-- org.springframework.validation, -->
+							<!-- org.springframework.web.bind, -->
+							<!-- org.springframework.web.bind.support, -->
+							<!-- org.springframework.web.context.request, -->
+							<!-- org.springframework.web.context.support, -->
+							<!-- org.springframework.web.servlet.mvc.annotation, -->
+							<!-- org.springframework.web.servlet.mvc.multiaction, -->
+							<!-- org.springframework.web.servlet.support, -->
+							<!-- org.springframework.web.util, -->
 
 							<!--com.google.gwt.user.client.rpc, !com.google.gwt.*.client.*, -->
 							*
