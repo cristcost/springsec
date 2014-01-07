@@ -39,7 +39,7 @@
 		pre-post-annotations="enabled">
 		<security:expression-handler ref="expressionHandler" />
 		<security:protect-pointcut access="ROLE_ADMIN"
-			expression="execution(* net.cristcost.study.TestServiceImpl.*(..))" />
+			expression="execution(* net.cristcost.study.SimpleServiceImpl.service*(..))" />
 	</security:global-method-security>
 
 

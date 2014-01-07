@@ -26,6 +26,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -108,30 +110,44 @@ public class SecurityStudyUtil {
   }
 
   public static void invokeSecuredBean(PrintWriter writer, TestService service) {
-    writer.println("### Secured Bean Test ###");
+    writer.println("==> Secured Bean Test");
 
     if (service != null) {
       try {
         service.serviceOne();
-        writer.println("Executed service.serviceOne();");
+        writer.println("Executed " + ((ImplNameUtil) service).getImplName() + ".serviceOne();");
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }
       try {
         service.serviceTwo("input");
-        writer.println("Executed service.serviceTwo(...);");
+        writer.println("Executed " + ((ImplNameUtil) service).getImplName() + ".serviceTwo(...);");
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }
       try {
         String ret = service.serviceThree();
-        writer.println("Executed service.serviceThree(); with result: " + ret);
+        writer.println("Executed " + ((ImplNameUtil) service).getImplName()
+            + ".serviceThree(); with result: " + ret);
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }
       try {
         String ret = service.serviceFour("input");
-        writer.println("Executed service.serviceFour(...); with result: " + ret);
+        writer.println("Executed " + ((ImplNameUtil) service).getImplName()
+            + ".serviceFour(...); with result: " + ret);
+      } catch (AuthenticationException | AccessDeniedException e) {
+        writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
+      }
+      try {
+        List<String> ret = service.serviceFive();
+        if (ret != null) {
+          writer.println("Executed " + ((ImplNameUtil) service).getImplName()
+              + ".serviceFive with result " + Arrays.toString(ret.toArray()));
+        } else {
+          writer.println("Executed " + ((ImplNameUtil) service).getImplName()
+              + ".serviceFive with result null!");
+        }
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }

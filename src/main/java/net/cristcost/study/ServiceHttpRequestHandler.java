@@ -19,6 +19,7 @@ import org.springframework.web.HttpRequestHandler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class ServiceHttpRequestHandler implements HttpRequestHandler {
 
   private AuthenticationManager authenticationManager = null;
 
-  private TestService service = null;
+  private List<TestService> services = null;
 
   @Override
   public void handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,15 +44,17 @@ public class ServiceHttpRequestHandler implements HttpRequestHandler {
 
     writer.println("Hello from a Spring's HttpRequestHandler");
 
-    SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
+    for (TestService service : services) {
+      SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
+    }
   }
 
   public void setAuthenticationManager(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
   }
 
-  public void setService(TestService service) {
-    this.service = service;
+  public void setServices(List<TestService> services) {
+    this.services = services;
   }
 
 }

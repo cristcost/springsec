@@ -18,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +33,7 @@ public class ServiceServlet extends HttpServlet {
 
   private AuthenticationManager authenticationManager = null;
 
-  private TestService service = null;
+  private List<TestService> services = null;
 
   @Override
   public void service(HttpServletRequest request, HttpServletResponse response)
@@ -43,15 +44,17 @@ public class ServiceServlet extends HttpServlet {
     PrintWriter writer = response.getWriter();
 
     writer.println("Hello from a standard HttpServlet");
-
-    SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
+    
+    for (TestService service : services) {
+      SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
+    }
   }
 
   public void setAuthenticationManager(AuthenticationManager authenticationManager) {
     this.authenticationManager = authenticationManager;
   }
 
-  public void setService(TestService service) {
-    this.service = service;
+  public void setServices(List<TestService> services) {
+    this.services = services;
   }
 }

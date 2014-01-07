@@ -35,10 +35,19 @@
 	</security:http>
 
 	<security:global-method-security
+		secured-annotations="enabled" jsr250-annotations="enabled"
 		pre-post-annotations="enabled">
+		<security:expression-handler ref="expressionHandler" />
 		<security:protect-pointcut access="ROLE_ADMIN"
-			expression="execution(* net.cristcost.study.TestService.*(..))" />
+			expression="execution(* net.cristcost.study.SimpleServiceImpl.service*(..))" />
 	</security:global-method-security>
+
+	<bean id="expressionHandler"
+		class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+		<property name="permissionEvaluator">
+			<bean class="net.cristcost.study.TestPermissionEvaluator" />
+		</property>
+	</bean>
 
 	<security:user-service id="userService">
 		<security:user name="admin" password="123"

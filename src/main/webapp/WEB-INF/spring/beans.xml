@@ -20,15 +20,29 @@
        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<bean id="testService" class="net.cristcost.study.TestServiceImpl" />
+	<bean id="simpleService" class="net.cristcost.study.SimpleServiceImpl" />
+	<bean id="annotatedService" class="net.cristcost.study.AnnotatedServiceImpl" />
 
 	<bean id="testServlet" class="net.cristcost.study.ServiceServlet">
 		<property name="authenticationManager" ref="authenticationManager" />
-		<property name="service" ref="testService" />
+		<property name="services">
+			<util:list>
+				<ref bean="testService" />
+				<ref bean="simpleService" />
+				<ref bean="annotatedService" />
+			</util:list>
+		</property>
 	</bean>
 
 	<bean id="testHttpRequestHandler" class="net.cristcost.study.ServiceHttpRequestHandler">
 		<property name="authenticationManager" ref="authenticationManager" />
-		<property name="service" ref="testService" />
+		<property name="services">
+			<util:list>
+				<ref bean="testService" />
+				<ref bean="simpleService" />
+				<ref bean="annotatedService" />
+			</util:list>
+		</property>
 	</bean>
 
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
