@@ -22,15 +22,11 @@
        http://www.springframework.org/schema/aop 
        http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
-	<bean id="testService" class="net.cristcost.study.TestServiceImpl" />
-
 	<aop:config>
 		<aop:aspect ref="testAspect">
-			<!-- <aop:around method="traceInvocation" -->
-			<!-- pointcut="execution(* net.cristcost.study.TestServiceImpl.service*(..))" 
-				/> -->
-			<!-- <aop:around method="traceInvocation" -->
-			<!-- pointcut="bean(annotatedService) and execution(* *.service*(..))" 
+			<aop:around method="traceInvocation"
+				pointcut="execution(* net.cristcost.study.TestServiceImpl.service*(..)) and within(net.cristcost.study.*)" />
+			<!-- <aop:around method="traceInvocation" pointcut="bean(annotatedService)" 
 				/> -->
 		</aop:aspect>
 	</aop:config>

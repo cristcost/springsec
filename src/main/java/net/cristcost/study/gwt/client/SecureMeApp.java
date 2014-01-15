@@ -1,3 +1,17 @@
+/*
+ * Copyright 2013, Cristiano Costantini, Giuseppe Gerla, Michele Ficarra, Sergio Ciampi, Stefano
+ * Cigheri.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package net.cristcost.study.gwt.client;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -17,16 +31,19 @@ import net.cristcost.study.gwt.client.list.ListTagsPlace;
 import net.cristcost.study.gwt.client.utils.NavigationView;
 import net.cristcost.study.gwt.client.utils.NavigationWidget;
 
+// TODO: Auto-generated Javadoc
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class SecureMeApp implements EntryPoint {
 
+  /** The app widget. */
+  private SimplePanel appWidget = new SimplePanel();
+
   /**
    * Create a remote service proxy to talk to the server-side Greeting service.
    */
   private Place defaultPlace = new ListTagsPlace();
-  private SimplePanel appWidget = new SimplePanel();
 
   /**
    * This is the entry point method.
@@ -52,9 +69,14 @@ public class SecureMeApp implements EntryPoint {
     RootPanel.get("application").add(appWidget);
 
     historyHandler.handleCurrentHistory();
-
   }
 
+  /**
+   * Creates the populated menu.
+   * 
+   * @param historyMapper the history mapper
+   * @return the navigation view
+   */
   private NavigationView createPopulatedMenu(SecureMeHistoryMapper historyMapper) {
     NavigationView navWidget = new NavigationWidget();
     navWidget.setHomeUrl("#" + historyMapper.getToken(new ListTagsPlace()));
