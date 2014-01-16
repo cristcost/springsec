@@ -19,12 +19,21 @@
 		class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />
 	<bean name="simpleServletPostProcessor"
 		class="org.springframework.web.servlet.handler.SimpleServletPostProcessor" />
-		
+
 	<bean name="httpRequestHandlerAdapter"
 		class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
 
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/standard.servlet">testServlet</prop>
+				<prop key="/http-request-handler.servlet">testHttpRequestHandler</prop>
+				<prop key="/gwt.servlet">tagServiceGwtServlet</prop>
+			</props>
+		</property>
+	</bean>
 
-	<ctx:component-scan base-package="net.cristcost.study" />
+	<ctx:component-scan base-package="net.cristcost.study.mvc" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -34,8 +43,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- Ideally I would map every thing to DispatcherServlet and use the following, 
-		but don't works in OSGi! -->
+	<!-- Ideally I would map everything to DispatcherServlet and use the following, 
+		but don't works in OSGi with Spring DM Web! -->
 	<!-- <mvc:resources mapping="/fonts/**" location="/fonts/" /> -->
 	<!-- <mvc:resources mapping="/script/**" location="/script/" /> -->
 	<!-- <mvc:resources mapping="/styles/**" location="/styles/" /> -->

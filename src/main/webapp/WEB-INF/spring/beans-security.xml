@@ -39,14 +39,14 @@
 		pre-post-annotations="enabled">
 		<security:expression-handler ref="expressionHandler" />
 		<!-- <security:protect-pointcut access="ROLE_ADMIN" -->
-		<!-- expression="execution(* net.cristcost.study.SimpleServiceImpl.service*(..))" 
+		<!-- expression="execution(* net.cristcost.study.services.SimpleServiceImpl.service*(..))" 
 			/> -->
 	</security:global-method-security>
 
 	<bean id="expressionHandler"
 		class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
 		<property name="permissionEvaluator">
-			<bean class="net.cristcost.study.TestPermissionEvaluator" />
+			<bean class="net.cristcost.study.sec.TestPermissionEvaluator" />
 		</property>
 	</bean>
 

@@ -12,7 +12,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package net.cristcost.study;
+package net.cristcost.study.services;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,12 +22,12 @@ import java.util.logging.Logger;
 /**
  * The Class TestServiceImpl.
  */
-public class SimpleServiceImpl implements TestService, ImplNameUtil {
-  private static final Logger logger = Logger.getLogger(SimpleServiceImpl.class.getName());
+public class TestServiceImpl implements TestService, ImplNameUtil {
+  private static final Logger logger = Logger.getLogger(TestServiceImpl.class.getName());
 
   @Override
   public String getImplName() {
-    return SimpleServiceImpl.class.getSimpleName();
+    return TestServiceImpl.class.getSimpleName();
   }
 
   @Override

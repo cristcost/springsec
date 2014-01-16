@@ -12,41 +12,31 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package net.cristcost.study;
-
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PostFilter;
-import org.springframework.security.access.prepost.PreAuthorize;
+package net.cristcost.study.services;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Logger;
 
-import javax.annotation.security.RolesAllowed;
-
 /**
  * The Class TestServiceImpl.
  */
-public class AnnotatedServiceImpl implements TestService, ImplNameUtil {
-  private static final Logger logger = Logger.getLogger(AnnotatedServiceImpl.class.getName());
+public class SimpleServiceImpl implements TestService, ImplNameUtil {
+  private static final Logger logger = Logger.getLogger(SimpleServiceImpl.class.getName());
 
   @Override
   public String getImplName() {
-    return AnnotatedServiceImpl.class.getSimpleName();
+    return SimpleServiceImpl.class.getSimpleName();
   }
 
   @Override
-  @PostFilter("hasPermission(filterObject, 'please')")
   public List<String> serviceFive() {
     logger.info("serviceFive");
     return new CopyOnWriteArrayList<>(Arrays.asList("one", "two", "three"));
   }
 
   @Override
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
-  @PostAuthorize("returnObject.length() > 3")
   public String serviceFour(String input) {
     logger.info("serviceFour: " + input);
     return "ok " + input;
@@ -58,16 +48,13 @@ public class AnnotatedServiceImpl implements TestService, ImplNameUtil {
   }
 
   @Override
-  @RolesAllowed("ROLE_ADMIN")
   public String serviceThree() {
     logger.info("serviceThree");
     return "ok";
   }
 
   @Override
-  @Secured("ROLE_ADMIN")
   public void serviceTwo(String input) {
     logger.info("serviceTwo: " + input);
   }
-
 }

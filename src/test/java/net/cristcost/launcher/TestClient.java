@@ -1,7 +1,7 @@
 package net.cristcost.launcher;
 
-import net.cristcost.study.ImplNameUtil;
-import net.cristcost.study.TestService;
+import net.cristcost.study.services.ImplNameUtil;
+import net.cristcost.study.services.TestService;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;

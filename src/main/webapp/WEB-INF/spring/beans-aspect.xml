@@ -25,11 +25,11 @@
 	<aop:config>
 		<aop:aspect ref="testAspect">
 			<aop:around method="traceInvocation"
-				pointcut="execution(* net.cristcost.study.TestServiceImpl.service*(..)) and within(net.cristcost.study.*)" />
+				pointcut="execution(* net.cristcost.study.services.TestServiceImpl.service*(..)) and within(net.cristcost.study.*)" />
 			<!-- <aop:around method="traceInvocation" pointcut="bean(annotatedService)" 
 				/> -->
 		</aop:aspect>
 	</aop:config>
 
-	<bean id="testAspect" class="net.cristcost.study.TestAspect" />
+	<bean id="testAspect" class="net.cristcost.study.aop.TestAspect" />
 </beans>

@@ -19,11 +19,11 @@
 	   http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<bean id="testService" class="net.cristcost.study.TestServiceImpl" />
-	<bean id="simpleService" class="net.cristcost.study.SimpleServiceImpl" />
-	<bean id="annotatedService" class="net.cristcost.study.AnnotatedServiceImpl" />
+	<bean id="testService" class="net.cristcost.study.services.TestServiceImpl" />
+	<bean id="simpleService" class="net.cristcost.study.services.SimpleServiceImpl" />
+	<bean id="annotatedService" class="net.cristcost.study.services.AnnotatedServiceImpl" />
 
-	<bean id="testServlet" class="net.cristcost.study.ServiceServlet">
+	<bean id="testServlet" class="net.cristcost.study.services.ServiceServlet">
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="services">
 			<util:list>
@@ -34,7 +34,7 @@
 		</property>
 	</bean>
 
-	<bean id="testHttpRequestHandler" class="net.cristcost.study.ServiceHttpRequestHandler">
+	<bean id="testHttpRequestHandler" class="net.cristcost.study.services.ServiceHttpRequestHandler">
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="services">
 			<util:list>
@@ -47,13 +47,4 @@
 	
 	<bean id="tagServiceGwtServlet" class="net.cristcost.study.gwt.server.GwtTagServiceImpl" />
 
-	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-		<property name="mappings">
-			<props>
-				<prop key="/standard.servlet">testServlet</prop>
-				<prop key="/http-request-handler.servlet">testHttpRequestHandler</prop>
-				<prop key="/gwt.servlet">tagServiceGwtServlet</prop>
-			</props>
-		</property>
-	</bean>
 </beans>
