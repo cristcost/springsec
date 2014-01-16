@@ -17,8 +17,12 @@
 		handlers -->
 	<bean name="simpleServletHandlerAdapter"
 		class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />
+	<bean name="simpleServletPostProcessor"
+		class="org.springframework.web.servlet.handler.SimpleServletPostProcessor" />
+		
 	<bean name="httpRequestHandlerAdapter"
 		class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+
 
 	<ctx:component-scan base-package="net.cristcost.study" />
 
