@@ -27,19 +27,19 @@ public class AppController {
 
   private static final Logger logger = Logger.getLogger(AppController.class.getName());
 
-  @RequestMapping("/secured/demo.html")
+  @RequestMapping("/demo.html")
   public String demo() {
     logger.info("Accessing test GWT page");
     return "demo";
   }
 
-  @RequestMapping("/secured/gwt.html")
+  @RequestMapping("/gwt.html")
   public String gwt() {
     logger.info("Accessing test GWT page");
     return "gwt";
   }
   
-  @RequestMapping("/secured/gwt.bypass.html")
+  @RequestMapping("/gwt.bypass.html")
   public String gwtBypass() {
     logger.info("Accessing test GWT page");
     return "gwt.bypass";
@@ -51,7 +51,7 @@ public class AppController {
     return "index";
   }
 
-  @RequestMapping("/secured/login.html")
+  @RequestMapping("/login.html")
   public String login() {
     logger.info("Accessing login form page");
     return "login";
@@ -63,7 +63,7 @@ public class AppController {
     return "page403";
   }
 
-  @RequestMapping("/secured/tags.html")
+  @RequestMapping("/tags.html")
   public String tags() {
     logger.info("Accessing tags page");
     return "tags";
