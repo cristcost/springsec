@@ -38,6 +38,12 @@ public class AppController {
     logger.info("Accessing test GWT page");
     return "gwt";
   }
+  
+  @RequestMapping("/secured/gwt.bypass.html")
+  public String gwtBypass() {
+    logger.info("Accessing test GWT page");
+    return "gwt.bypass";
+  }
 
   @RequestMapping("/index.html")
   public String index() {
