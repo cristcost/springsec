@@ -15,7 +15,9 @@
 package net.cristcost.study.gwt.client;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.client.Dictionary;
 import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 
@@ -28,7 +30,6 @@ import net.cristcost.study.gwt.client.list.ListTagsWidget;
 import net.cristcost.study.gwt.client.utils.NavigationView;
 import net.cristcost.study.gwt.client.utils.NavigationWidget;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating StandardClient objects.
  */
@@ -54,6 +55,15 @@ public class StandardClientFactory implements ClientFactory {
 
   /** The tag service. */
   private final GwtTagServiceAsync tagService = GWT.create(GwtTagService.class);
+
+  /** The page config. */
+  private final Dictionary pageConfig = Dictionary.getDictionary("getPageConfig");
+
+  public StandardClientFactory() {
+    if (getPageConfig() != null && getPageConfig().get("tagServiceEndpoint") != null) {
+      ((ServiceDefTarget) tagService).setServiceEntryPoint(getPageConfig().get("tagServiceEndpoint"));
+    }
+  }
 
   /*
    * (non-Javadoc)
@@ -123,6 +133,10 @@ public class StandardClientFactory implements ClientFactory {
   @Override
   public GwtTagServiceAsync getTagService() {
     return tagService;
+  }
+
+  public Dictionary getPageConfig() {
+    return pageConfig;
   }
 
 }

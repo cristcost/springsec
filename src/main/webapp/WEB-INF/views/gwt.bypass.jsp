@@ -8,6 +8,11 @@
 <title>Web Application Starter Project</title>
 <link href="${pageContext.request.contextPath}/styles/bootstrap.min.css"
 	rel="stylesheet" media="screen">
+<script type="text/javascript">
+	var getPageConfig = {
+		"tagServiceEndpoint" : "${pageContext.request.contextPath}/secured/gwt.servlet"
+	};
+</script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/secureme/secureme.nocache.js"></script>
 </head>
