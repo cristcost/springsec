@@ -17,6 +17,10 @@
 	<packaging>war</packaging>
 	<name>Cristcost :: Test Spring Security</name>
 
+	<properties>
+		<webappDirectory>${project.build.directory}/webapp</webappDirectory>
+	</properties>
+
 	<dependencies>
 		<!-- Spring Dependencies -->
 		<dependency>
@@ -73,6 +77,12 @@
 			<artifactId>gwt-user</artifactId>
 			<version>${gwt.version}</version>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>validation-api</artifactId>
+					<groupId>javax.validation</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
@@ -147,6 +157,7 @@
 	</dependencies>
 
 	<build>
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -186,6 +197,7 @@
 					</archive>
 					<webResources>
 					</webResources>
+					<webappDirectory>${webappDirectory}</webappDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -226,6 +238,7 @@
 				</executions>
 				<configuration>
 					<style>PRETTY</style>
+					<webappDirectory>${webappDirectory}</webappDirectory>
 				</configuration>
 				<dependencies>
 					<dependency>
