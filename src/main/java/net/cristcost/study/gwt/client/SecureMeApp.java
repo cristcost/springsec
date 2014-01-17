@@ -65,9 +65,13 @@ public class SecureMeApp implements EntryPoint {
     PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
     historyHandler.register(placeController, eventBus, defaultPlace);
 
-    RootPanel.get("navigation").add(createPopulatedMenu(historyMapper));
-    RootPanel.get("application").add(appWidget);
+    // add navigation with gwt if the navigation div is found
+    RootPanel navigationRootPanel = RootPanel.get("navigation");
+    if (navigationRootPanel != null) {
+      navigationRootPanel.add(createPopulatedMenu(historyMapper));
+    }
 
+    RootPanel.get("application").add(appWidget);
     historyHandler.handleCurrentHistory();
   }
 

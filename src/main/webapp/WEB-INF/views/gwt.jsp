@@ -5,17 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-  java.util.List<String> items = java.util.Arrays.asList("one", "two", "three");
-  pageContext.setAttribute("items", items);
-%>
 <c:set var="title" value="Spring MVC In ServiceMix Example" />
 
 <title><c:out value="${title}" /></title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css" rel="stylesheet" media="screen">
-<!-- <script type="text/javascript" src="gwtdemoapp/gwtdemoapp.nocache.js"></script> -->
+<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css"
+	rel="stylesheet" media="screen">
+<script type="text/javascript" src="${pageContext.request.contextPath}/simple/simple.nocache.js"></script>
 </head>
 <body>
 	<iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
@@ -28,7 +25,10 @@
 			</h1>
 			<p>GWT with Backend of Spring MVC</p>
 		</div>
-		<p>Go <a href="${pageContext.request.contextPath}/index.html">home</a></p>
+		<div id="application"></div>
+		<p>
+			Go <a href="${pageContext.request.contextPath}/index.html">home</a>
+		</p>
 	</div>
 </body>
 </html>
