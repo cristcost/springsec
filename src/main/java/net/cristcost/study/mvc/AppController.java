@@ -27,24 +27,6 @@ public class AppController {
 
   private static final Logger logger = Logger.getLogger(AppController.class.getName());
 
-  @RequestMapping("/demo.html")
-  public String demo() {
-    logger.info("Accessing test GWT page");
-    return "demo";
-  }
-
-  @RequestMapping("/gwt.html")
-  public String gwt() {
-    logger.info("Accessing test GWT page");
-    return "gwt";
-  }
-  
-  @RequestMapping("/gwt.bypass.html")
-  public String gwtBypass() {
-    logger.info("Accessing test GWT page");
-    return "gwt.bypass";
-  }
-
   @RequestMapping("/index.html")
   public String index() {
     logger.info("Accessing index page");
@@ -63,10 +45,78 @@ public class AppController {
     return "page403";
   }
 
-  @RequestMapping("/tags.html")
-  public String tags() {
-    logger.info("Accessing tags page");
-    return "tags";
+  
+  @RequestMapping("/tags.basic.html")
+  public String tagsBasic() {
+    logger.info("Accessing tags.basic page");
+    return "tags.basic";
+  }
+
+  @RequestMapping("/tags.sec.html")
+  public String tagsSec() {
+    logger.info("Accessing tags.sec page");
+    return "tags.sec";
+  }
+  
+
+  @RequestMapping("/demo.admin.html")
+  public String demoAdmin() {
+    logger.info("Accessing demo.admin page");
+    return "demo";
+  }
+
+  @RequestMapping("/demo.any.html")
+  public String demoAny() {
+    logger.info("Accessing demo.any page");
+    return "demo";
+  }
+
+  @RequestMapping("/demo.auth.html")
+  public String demoAuth() {
+    logger.info("Accessing demo.auth page");
+    return "demo";
+  }
+
+  @RequestMapping("/demo.unauth.html")
+  public String demoUnauth() {
+    logger.info("Accessing demo.unauth page");
+    return "demo";
+  }
+
+  @RequestMapping("/demo.user.html")
+  public String demoUser() {
+    logger.info("Accessing demo.user page");
+    return "demo";
+  }
+
+  @RequestMapping("/web.angular.html")
+  public String webAngular() {
+    logger.info("Accessing web.angular page");
+    return "web.angular";
+  }
+
+  @RequestMapping("/web.gwt.html")
+  public String webGwt() {
+    logger.info("Accessing web.gwt page");
+    return "web.gwt";
+  }
+
+  @RequestMapping("/web.jquery.html")
+  public String webJquery() {
+    logger.info("Accessing web.jquery page");
+    return "web.jquery";
+  }
+
+  @RequestMapping("/gwt.hacked.html")
+  public String gwtHacked() {
+    logger.info("Accessing gwt.hacked page");
+    return "gwt.hacked";
+  }
+
+  @RequestMapping("/gwt.secured.html")
+  public String gwtSecured() {
+    logger.info("Accessing gwt.secured page");
+    return "gwt.secured";
   }
 
 }

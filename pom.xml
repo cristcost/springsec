@@ -17,10 +17,6 @@
 	<packaging>war</packaging>
 	<name>Cristcost :: Test Spring Security</name>
 
-	<properties>
-		<webappDirectory>${project.build.directory}/webapp</webappDirectory>
-	</properties>
-
 	<dependencies>
 		<!-- Spring Dependencies -->
 		<dependency>
@@ -157,7 +153,6 @@
 	</dependencies>
 
 	<build>
-		<!-- <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory> -->
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -195,9 +190,11 @@
 					<archive>
 						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
-					<webResources>
+					<webResources>						
+						<resource>
+							<directory>${project.build.directory}/gwt-webapp</directory>
+						</resource>
 					</webResources>
-					<webappDirectory>${webappDirectory}</webappDirectory>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -238,7 +235,7 @@
 				</executions>
 				<configuration>
 					<style>PRETTY</style>
-					<webappDirectory>${webappDirectory}</webappDirectory>
+					<webappDirectory>${project.build.directory}/gwt-webapp</webappDirectory>
 				</configuration>
 				<dependencies>
 					<dependency>
