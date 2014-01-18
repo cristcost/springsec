@@ -10,16 +10,16 @@
 	rel="stylesheet" media="screen">
 
 </head>
-<body style="padding-top: 50px;">
+<body style="padding-top: 60px;">
 
 	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Spring Security Study</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring Security Study</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}/">Home</a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/secured/login.html">Login</a>
 				</li>
