@@ -8,47 +8,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-  java.util.List<String> items = java.util.Arrays.asList("one", "two", "three");
-  pageContext.setAttribute("items", items);
-%>
-<c:set var="title" value="Security Tags" />
+<c:set var="title" value="Test of Spring Security Taglibs" />
 
 <sec:authorize
    access="isAuthenticated()">
   <sec:authentication property="principal.username" var="username" />
+</sec:authorize>
+<sec:authorize
+   access="!isAuthenticated()">
+  <c:set value="NOT AUTHENTICATED" var="username" />
 </sec:authorize>
 
 
 <title><c:out value="${title} | ${username}" /></title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="${pageContext.request.contextPath}/scripts/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/scripts/bootstrap.min.js"></script>
+<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css"
+	rel="stylesheet" media="screen">
 
 </head>
-<body>
+<body style="padding-top: 60px;">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring Security Study</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/secured/login.html">Login</a>
+				</li>
+				<li><a href="${pageContext.request.contextPath}/secured/logout">Logout
+				</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+
 	<div class="container">
 		<div class="jumbotron">
 			<h1>
 				<c:out value="${title}" />
 			</h1>
-			<p>
-				For
+			<p>Simple page that uses some tags in <code>http://java.sun.com/jsp/jstl/core</code>
+				and <code>http://www.springframework.org/security/tags</code>
+			<p> You are logged as
 				<c:out value="${username}" />
 			</p>
 		</div>
+
 		<div>
+
+
+		<div class="row">
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<p>You are a USER</p>
+				<div class="col-md-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading">For User</div>
+						<div class="panel-body">
+							<p>This section is only visible to who has the USER role</p>
+						</div>
+					</div>
+				</div>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<p>You are an ADMIN</p>
+				<div class="col-md-4">
+					<div class="panel panel-success">
+						<div class="panel-heading">For Admin</div>
+						<div class="panel-body">
+							<p>This section is only visible to who has the USER role</p>
+						</div>
+					</div>
+				</div>
 			</sec:authorize>
-			<p>
-				Go <a href="${pageContext.request.contextPath}/index.html">home</a>
-			</p>
+			<sec:authorize access="isAuthenticated()">
+				<div class="col-md-4">
+					<div class="panel panel-warning">
+						<div class="panel-heading">For Authenticated</div>
+						<div class="panel-body">
+							<p>This section is only visible to who is authenticated</p>
+						</div>
+					</div>
+				</div>
+			</sec:authorize>
+			<sec:authorize access="!isAuthenticated()">
+				<div class="col-md-4">
+					<div class="panel panel-danger">
+						<div class="panel-heading">For the others</div>
+						<div class="panel-body">
+							<p>This section is only visible to who is NOT authenticated</p>
+						</div>
+					</div>
+				</div>
+			</sec:authorize>
+		</div>	
+
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					Go <a href="javascript:history.back()">back</a>
+				</p>
+			</div>
 		</div>
 	</div>
 </body>

@@ -69,7 +69,7 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<p>
-					Go <a href="${pageContext.request.contextPath}/index.html">home</a>
+					Go <a href="javascript:history.back()">back</a>
 				</p>
 			</div>
 		</div>

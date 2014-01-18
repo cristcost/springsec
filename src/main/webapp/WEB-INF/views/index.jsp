@@ -112,7 +112,7 @@
 							security tags under an URL <a
 							href="${pageContext.request.contextPath}/unfiltered/tags.sec.html"
 							title="URL under /unfiltered/* are not processed by Spring Security filter chain">that
-								is not filtered</a>?
+								is not filtered</a>? The authentication information is not available...
 						</li>
 					</ul>
 				</div>
