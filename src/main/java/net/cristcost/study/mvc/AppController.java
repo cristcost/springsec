@@ -44,7 +44,12 @@ public class AppController {
     logger.info("Accessing unathorized page");
     return "page403";
   }
-
+  
+  @RequestMapping("/page404.html")
+  public String page404() {
+    logger.info("Accessing page not found");
+    return "page404";
+  }
   
   @RequestMapping("/tags.basic.html")
   public String tagsBasic() {
