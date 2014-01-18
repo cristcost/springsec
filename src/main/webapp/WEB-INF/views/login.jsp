@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var="title" value="Log In" />
 
-<title><c:out value="${title}" /></title>
+<title>Login</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/styles/bootstrap.min.css"
+	rel="stylesheet" media="screen">
 <script src="${pageContext.request.contextPath}/scripts/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/scripts/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/scripts/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -23,17 +23,22 @@
 				<h3 class="panel-title">Sign-In</h3>
 			</div>
 			<div class="panel-body">
-				<c:if test="${not empty param.login_error}">
-					<div class="alert alert-danger alert-dismissable">
-						<p>Your login attempt was not successful, try again.</p>
-						<p>
-							Reason:
-							<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-							.
-						</p>
-					</div>
-				</c:if>
-				<form action="<c:url value='/secured/sign'/>" method="post">
+
+				<%
+				  if (request.getParameter("login_error") != null
+				      && !request.getParameter("login_error").isEmpty()) {
+				%>
+
+				<div class="alert alert-danger alert-dismissable">
+					<p>Your login attempt was not successful, try again.</p>
+					<p>Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}.</p>
+				</div>
+				<%
+				  }
+				%>
+
+				<form action="${pageContext.request.contextPath}/secured/sign"
+					method="post">
 					<div class="form-group">
 						<input type="text" class="form-control" name="user"
 							placeholder="Username"> <input type="password"
