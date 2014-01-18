@@ -8,9 +8,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var="title" value="Error 404" />
 
-<title><c:out value="${title}" /></title>
+<title>${title}</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="${pageContext.request.contextPath}/styles/bootstrap.min.css"
@@ -22,7 +21,8 @@
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring Security Study</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring
+					Security Study</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
@@ -35,17 +35,24 @@
 		</div>
 	</div>
 
+
 	<div class="container">
 		<div class="jumbotron">
-			<h1>
-				<c:out value="${title}" />
-			</h1>
-			<p>Resource not found</p>
+			<h1>${title}</h1>
+			<p>${page_description}</p>
 		</div>
-		<div>
-			<p>
-				Go <a href="${pageContext.request.contextPath}/index.html">home</a>
-			</p>
+		<div class="row">
+			<div class="col-md-12">
+				<p>Your authentication information is the following:</p>
+				<pre class="code"><sec:authentication property="principal" /></pre>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					Go <a href="javascript:history.back()">back</a>
+				</p>
+			</div>
 		</div>
 	</div>
 </body>

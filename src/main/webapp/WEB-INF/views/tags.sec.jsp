@@ -10,13 +10,11 @@
 <head>
 <c:set var="title" value="Test of Spring Security Taglibs" />
 
-<sec:authorize
-   access="isAuthenticated()">
-  <sec:authentication property="principal.username" var="username" />
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.username" var="username" />
 </sec:authorize>
-<sec:authorize
-   access="!isAuthenticated()">
-  <c:set value="NOT AUTHENTICATED" var="username" />
+<sec:authorize access="!isAuthenticated()">
+	<c:set value="NOT AUTHENTICATED" var="username" />
 </sec:authorize>
 
 
@@ -32,7 +30,8 @@
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring Security Study</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Spring
+					Security Study</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
@@ -52,15 +51,16 @@
 			<h1>
 				<c:out value="${title}" />
 			</h1>
-			<p>Simple page that uses some tags in <code>http://java.sun.com/jsp/jstl/core</code>
-				and <code>http://www.springframework.org/security/tags</code>
-			<p> You are logged as
+			<p>
+				Simple page that uses some tags in
+				<code>http://java.sun.com/jsp/jstl/core</code>
+				and
+				<code>http://www.springframework.org/security/tags</code>
+			<p>
+				You are logged as
 				<c:out value="${username}" />
 			</p>
 		</div>
-
-		<div>
-
 
 		<div class="row">
 			<sec:authorize access="hasRole('ROLE_USER')">
@@ -103,7 +103,7 @@
 					</div>
 				</div>
 			</sec:authorize>
-		</div>	
+		</div>
 
 		<div class="row">
 			<div class="col-md-12">

@@ -15,14 +15,6 @@
 
 	<security:http auto-config="true" disable-url-rewriting="true"
 		use-expressions="true">
-		<security:intercept-url pattern="/secured/demo.html"
-			access="hasRole('ROLE_USER')" />
-		<security:intercept-url pattern="/secured/gwt.html"
-			access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/secured/http-request-handler.servlet"
-			access="!isAuthenticated()" />
-		<security:intercept-url pattern="/secured/standard.servlet"
-			access="isAuthenticated()" />
 
 		<security:logout logout-url="/secured/logout"
 			delete-cookies="JSESSIONID" />
@@ -32,6 +24,15 @@
 		<security:http-basic />
 		<security:access-denied-handler
 			error-page="/page403.html" />
+
+		<security:intercept-url pattern="/secured/demo.user.html"
+			access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/secured/demo.admin.html"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/secured/demo.auth.html"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/secured/demo.unauth.html"
+			access="!isAuthenticated()" />
 	</security:http>
 
 	<security:global-method-security
