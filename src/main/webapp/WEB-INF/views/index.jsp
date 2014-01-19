@@ -190,7 +190,7 @@
 					<div class="panel-heading">Web Frameworks</div>
 					<ul class="list-group">
 						<li class="list-group-item"><a
-							href="${pageContext.request.contextPath}/secured/web.jquery.html">JQuery</a>
+							href="${pageContext.request.contextPath}/secured/web.jquery.html">jQuery</a>
 						</li>
 						<li class="list-group-item"><a
 							href="${pageContext.request.contextPath}/secured/web.gwt.html">GWT</a>
