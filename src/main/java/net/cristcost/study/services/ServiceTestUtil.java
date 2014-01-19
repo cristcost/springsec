@@ -36,7 +36,39 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class ServiceTestUtil {
 
-  public static SecurityContext authenticate(PrintWriter writer, HttpServletRequest request,
+  public static void testSecurity(String simpleName, HttpServletRequest request,
+      PrintWriter writer, AuthenticationManager authenticationManager, List<TestService> services) {
+
+    writer.println("Performing test on " + simpleName);
+    writer.println();
+    writer.println("I will perform a serie of method invocation on " + services.size()
+        + " different beans");
+    writer.println();
+
+    // Suspend the the Thread for ms of time from "wait" parameter,
+    // used to make some test on behavior of SecurityContext with multiple threads
+    ServiceTestUtil.wait(writer, request, authenticationManager);
+
+    SecurityContext oldContext = null;
+    try {
+      // if "user" and "pass" parameter are sent, override the security context and perform a new
+      // authentication. Return old context that is needed to be restored at the end of the method
+      oldContext = ServiceTestUtil.authenticate(writer, request, authenticationManager);
+
+      // Dump current security information
+      ServiceTestUtil.dumpSecurityInformation(writer, authenticationManager);
+
+      // Invoke the beans
+      for (TestService service : services) {
+        ServiceTestUtil.invokeSecuredBean(writer, service);
+      }
+    } finally {
+      ServiceTestUtil.clearAuthentication(writer, oldContext);
+      // Note: I'm not resetting to anonymous, do it with SecurityStudyUtil.initAnonymous();
+    }
+  }
+
+  private static SecurityContext authenticate(PrintWriter writer, HttpServletRequest request,
       AuthenticationManager authenticationManager) {
 
     SecurityContext initialContext = SecurityContextHolder.getContext();
@@ -60,7 +92,7 @@ public class ServiceTestUtil {
     return initialContext;
   }
 
-  public static void clearAuthentication(PrintWriter writer, SecurityContext oldContext) {
+  private static void clearAuthentication(PrintWriter writer, SecurityContext oldContext) {
     if (oldContext != SecurityContextHolder.getContext()) {
       SecurityContextHolder.clearContext();
       SecurityContextHolder.setContext(oldContext);
@@ -68,9 +100,9 @@ public class ServiceTestUtil {
     }
   }
 
-  public static void dumpSecurityInformation(PrintWriter writer,
+  private static void dumpSecurityInformation(PrintWriter writer,
       AuthenticationManager authenticationManager) {
-    writer.println("### Security Information ###");
+    writer.println("### General Security Information ###");
 
     writer.println("Security Strategy is "
         + SecurityContextHolder.getContextHolderStrategy().toString());
@@ -102,20 +134,22 @@ public class ServiceTestUtil {
     writer.println();
   }
 
-  public static void initAnonymous() {
+  private static void initAnonymous() {
     AnonymousAuthenticationToken auth =
         new AnonymousAuthenticationToken("anonymous", "anonymousUser",
             AuthorityUtils.createAuthorityList("ROLE_ANONYMOUS"));
     SecurityContextHolder.getContext().setAuthentication(auth);
   }
 
-  public static void invokeSecuredBean(PrintWriter writer, TestService service) {
+  private static void invokeSecuredBean(PrintWriter writer, TestService service) {
 
     if (service != null) {
       String serviceName = service.getName();
       String serviceDescription = service.getDescription();
 
-      writer.println("==> Secured Bean Test");
+      writer.println("### Performing test on " + serviceName + "###");
+      writer.println(serviceDescription);
+      writer.println();
 
       try {
         service.serviceOne();
@@ -156,39 +190,14 @@ public class ServiceTestUtil {
       writer.println("Service bean not injected!");
     }
     writer.println();
-  }
-
-  public static void testSecurity(HttpServletRequest request, PrintWriter writer,
-      AuthenticationManager authenticationManager, TestService service) {
-
-    ServiceTestUtil.wait(writer, request, authenticationManager);
-    SecurityContext oldContext = null;
-    try {
-      oldContext = ServiceTestUtil.authenticate(writer, request, authenticationManager);
-
-      ServiceTestUtil.dumpSecurityInformation(writer, authenticationManager);
-
-      ServiceTestUtil.invokeSecuredBean(writer, service);
-    } finally {
-      ServiceTestUtil.clearAuthentication(writer, oldContext);
-      // Note: I'm not resetting to anonymous, do it with SecurityStudyUtil.initAnonymous();
-    }
-  }
-
-  public static void testSecurity(String simpleName, HttpServletRequest request,
-      PrintWriter writer, AuthenticationManager authenticationManager, List<TestService> services) {
-
-    writer.println("Performing test on from " + simpleName);
     writer.println();
-    writer.println("I will perform a serie of method invocation on " + services.size()
-        + " bean services.");
   }
 
-  public static void wait(PrintWriter writer, HttpServletRequest request,
+  private static void wait(PrintWriter writer, HttpServletRequest request,
       AuthenticationManager authenticationManager) {
     if (request.getParameter("entropy") != null) {
       try {
-        int waitTime = Integer.parseInt(request.getParameter("entropy"));
+        int waitTime = Integer.parseInt(request.getParameter("wait"));
         Thread.sleep(waitTime);
         writer.println("* Waiting for creating Thread entropy: " + waitTime + " ms");
 

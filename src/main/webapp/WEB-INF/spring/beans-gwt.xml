@@ -19,30 +19,7 @@
 	   http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<bean id="aspectProcessedService" class="net.cristcost.study.services.AspectProcessedService" />
-	<bean id="aspectSecuredService" class="net.cristcost.study.services.AspectSecuredService" />
-	<bean id="annotatedSecuredService" class="net.cristcost.study.services.AnnotatedSecuredService" />
 
-	<bean id="testServlet" class="net.cristcost.study.services.ServiceServlet">
-		<property name="authenticationManager" ref="authenticationManager" />
-		<property name="services">
-			<util:list>
-				<ref bean="aspectProcessedService" />
-				<ref bean="aspectSecuredService" />
-				<ref bean="annotatedSecuredService" />
-			</util:list>
-		</property>
-	</bean>
+	<bean id="tagServiceGwtServlet" class="net.cristcost.study.gwt.server.GwtTagServiceImpl" />
 
-	<bean id="testHttpRequestHandler" class="net.cristcost.study.services.ServiceHttpRequestHandler">
-		<property name="authenticationManager" ref="authenticationManager" />
-		<property name="services">
-			<util:list>
-				<ref bean="aspectProcessedService" />
-				<ref bean="aspectSecuredService" />
-				<ref bean="annotatedSecuredService" />
-			</util:list>
-		</property>
-	</bean>
-	
 </beans>

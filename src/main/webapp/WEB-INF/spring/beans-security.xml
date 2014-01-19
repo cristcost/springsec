@@ -39,9 +39,8 @@
 		secured-annotations="enabled" jsr250-annotations="enabled"
 		pre-post-annotations="enabled">
 		<security:expression-handler ref="expressionHandler" />
-		<!-- <security:protect-pointcut access="ROLE_ADMIN" -->
-		<!-- expression="execution(* net.cristcost.study.services.SimpleServiceImpl.service*(..))" 
-			/> -->
+		<security:protect-pointcut access="ROLE_ADMIN"
+			expression="execution(* net.cristcost.study.services.AspectSecuredService.service*(..))" />
 	</security:global-method-security>
 
 	<bean id="expressionHandler"
