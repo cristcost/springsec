@@ -31,4 +31,8 @@ public interface TestService {
 
   void serviceTwo(String input);
 
+  String getName();
+  
+  String getDescription();
+
 }

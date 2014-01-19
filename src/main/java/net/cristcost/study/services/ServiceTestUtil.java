@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * The Class SecurityStudyUtil.
  */
-public class SecurityStudyUtil {
+public class ServiceTestUtil {
 
   public static SecurityContext authenticate(PrintWriter writer, HttpServletRequest request,
       AuthenticationManager authenticationManager) {
@@ -110,43 +110,44 @@ public class SecurityStudyUtil {
   }
 
   public static void invokeSecuredBean(PrintWriter writer, TestService service) {
-    writer.println("==> Secured Bean Test");
 
     if (service != null) {
+      String serviceName = service.getName();
+      String serviceDescription = service.getDescription();
+
+      writer.println("==> Secured Bean Test");
+
       try {
         service.serviceOne();
-        writer.println("Executed " + ((ImplNameUtil) service).getImplName() + ".serviceOne();");
+        writer.println("Executed " + serviceName + ".serviceOne();");
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }
       try {
         service.serviceTwo("input");
-        writer.println("Executed " + ((ImplNameUtil) service).getImplName() + ".serviceTwo(...);");
+        writer.println("Executed " + serviceName + ".serviceTwo(...);");
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }
       try {
         String ret = service.serviceThree();
-        writer.println("Executed " + ((ImplNameUtil) service).getImplName()
-            + ".serviceThree(); with result: " + ret);
+        writer.println("Executed " + serviceName + ".serviceThree(); with result: " + ret);
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }
       try {
         String ret = service.serviceFour("input");
-        writer.println("Executed " + ((ImplNameUtil) service).getImplName()
-            + ".serviceFour(...); with result: " + ret);
+        writer.println("Executed " + serviceName + ".serviceFour(...); with result: " + ret);
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
       }
       try {
         List<String> ret = service.serviceFive();
         if (ret != null) {
-          writer.println("Executed " + ((ImplNameUtil) service).getImplName()
-              + ".serviceFive with result " + Arrays.toString(ret.toArray()));
+          writer.println("Executed " + serviceName + ".serviceFive with result "
+              + Arrays.toString(ret.toArray()));
         } else {
-          writer.println("Executed " + ((ImplNameUtil) service).getImplName()
-              + ".serviceFive with result null!");
+          writer.println("Executed " + serviceName + ".serviceFive with result null!");
         }
       } catch (AuthenticationException | AccessDeniedException e) {
         writer.println("Auth failed: " + e.getMessage() + " (" + e.getClass().getSimpleName() + ")");
@@ -160,18 +161,27 @@ public class SecurityStudyUtil {
   public static void testSecurity(HttpServletRequest request, PrintWriter writer,
       AuthenticationManager authenticationManager, TestService service) {
 
-    SecurityStudyUtil.wait(writer, request, authenticationManager);
+    ServiceTestUtil.wait(writer, request, authenticationManager);
     SecurityContext oldContext = null;
     try {
-      oldContext = SecurityStudyUtil.authenticate(writer, request, authenticationManager);
+      oldContext = ServiceTestUtil.authenticate(writer, request, authenticationManager);
 
-      SecurityStudyUtil.dumpSecurityInformation(writer, authenticationManager);
+      ServiceTestUtil.dumpSecurityInformation(writer, authenticationManager);
 
-      SecurityStudyUtil.invokeSecuredBean(writer, service);
+      ServiceTestUtil.invokeSecuredBean(writer, service);
     } finally {
-      SecurityStudyUtil.clearAuthentication(writer, oldContext);
+      ServiceTestUtil.clearAuthentication(writer, oldContext);
       // Note: I'm not resetting to anonymous, do it with SecurityStudyUtil.initAnonymous();
     }
+  }
+
+  public static void testSecurity(String simpleName, HttpServletRequest request,
+      PrintWriter writer, AuthenticationManager authenticationManager, List<TestService> services) {
+
+    writer.println("Performing test on from " + simpleName);
+    writer.println();
+    writer.println("I will perform a serie of method invocation on " + services.size()
+        + " bean services.");
   }
 
   public static void wait(PrintWriter writer, HttpServletRequest request,
@@ -188,4 +198,5 @@ public class SecurityStudyUtil {
       writer.println();
     }
   }
+
 }

@@ -42,11 +42,8 @@ public class ServiceHttpRequestHandler implements HttpRequestHandler {
 
     PrintWriter writer = response.getWriter();
 
-    writer.println("Hello from a Spring's HttpRequestHandler");
-
-    for (TestService service : services) {
-      SecurityStudyUtil.testSecurity(request, writer, authenticationManager, service);
-    }
+    ServiceTestUtil.testSecurity(this.getClass().getSimpleName(), request, writer, authenticationManager,
+        services);
   }
 
   public void setAuthenticationManager(AuthenticationManager authenticationManager) {

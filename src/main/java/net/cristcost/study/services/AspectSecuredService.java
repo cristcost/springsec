@@ -22,14 +22,20 @@ import java.util.logging.Logger;
 /**
  * The Class TestServiceImpl.
  */
-public class SimpleServiceImpl implements TestService, ImplNameUtil {
-  private static final Logger logger = Logger.getLogger(SimpleServiceImpl.class.getName());
+public class AspectSecuredService implements TestService {
+  private static final Logger logger = Logger.getLogger(AspectSecuredService.class.getName());
 
   @Override
-  public String getImplName() {
-    return SimpleServiceImpl.class.getSimpleName();
+  public String getName() {
+    return AspectSecuredService.class.getSimpleName();
   }
 
+  @Override
+  public String getDescription() {
+    return "This Service is secured with a Spring Security pointcut "
+        + "and require ADMIN role on each method";
+  }
+  
   @Override
   public List<String> serviceFive() {
     logger.info("serviceFive");

@@ -1,6 +1,5 @@
 package net.cristcost.launcher;
 
-import net.cristcost.study.services.ImplNameUtil;
 import net.cristcost.study.services.TestService;
 
 import org.springframework.security.access.AccessDeniedException;
@@ -41,28 +40,28 @@ public class TestClient implements Runnable {
       }
       try {
         service.serviceOne();
-        System.out.println(((ImplNameUtil) service).getImplName() + ".serviceOne");
+        System.out.println(service.getName() + ".serviceOne");
       } catch (AuthenticationException | AccessDeniedException e) {
         logger.log(Level.WARNING, "Auth failed: " + e.getMessage() + " ("
             + e.getClass().getSimpleName() + ")");
       }
       try {
         service.serviceTwo("input");
-        System.out.println(((ImplNameUtil) service).getImplName() + ".serviceTwo");
+        System.out.println(service.getName() + ".serviceTwo");
       } catch (AuthenticationException | AccessDeniedException e) {
         logger.log(Level.WARNING, "Auth failed: " + e.getMessage() + " ("
             + e.getClass().getSimpleName() + ")");
       }
       try {
         String s = service.serviceThree();
-        System.out.println(((ImplNameUtil) service).getImplName() + ".serviceThree: " + s);
+        System.out.println(service.getName() + ".serviceThree: " + s);
       } catch (AuthenticationException | AccessDeniedException e) {
         logger.log(Level.WARNING, "Auth failed: " + e.getMessage() + " ("
             + e.getClass().getSimpleName() + ")");
       }
       try {
         String s = service.serviceFour("input");
-        System.out.println(((ImplNameUtil) service).getImplName() + ".serviceFour: " + s);
+        System.out.println(service.getName() + ".serviceFour: " + s);
       } catch (AuthenticationException | AccessDeniedException e) {
         logger.log(Level.WARNING, "Auth failed: " + e.getMessage() + " ("
             + e.getClass().getSimpleName() + ")");
@@ -70,10 +69,10 @@ public class TestClient implements Runnable {
       try {
         List<String> serviceFive = service.serviceFive();
         if (serviceFive != null) {
-          System.out.println(((ImplNameUtil) service).getImplName() + ".serviceFive: "
+          System.out.println(service.getName() + ".serviceFive: "
               + Arrays.toString(serviceFive.toArray()));
         } else {
-          System.out.println(((ImplNameUtil) service).getImplName() + ".serviceFive retured null!");
+          System.out.println(service.getName() + ".serviceFive retured null!");
         }
       } catch (AuthenticationException | AccessDeniedException e) {
         logger.log(Level.WARNING, "Auth failed: " + e.getMessage() + " ("

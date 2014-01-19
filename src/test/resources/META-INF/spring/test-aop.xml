@@ -27,27 +27,27 @@
 	<aop:config>
 		<aop:aspect ref="testAspect">
 			<aop:around method="traceInvocation"
-				pointcut="execution(* net.cristcost.study.SimpleServiceImpl.service*(..))" />
+				pointcut="execution(* net.cristcost.study.services.AspectProcessedService.service*(..))" />
 			<aop:around method="traceInvocation"
 				pointcut="bean(annotatedService) and execution(* *.service*(..))" />
 		</aop:aspect>
 	</aop:config>
 
-	<bean id="testAspect" class="net.cristcost.study.TestAspect" />
+	<bean id="testAspect" class="net.cristcost.study.aop.TestAspect" />
 
 
-	<bean id="testService" class="net.cristcost.study.TestServiceImpl" />
-	<bean id="simpleService" class="net.cristcost.study.SimpleServiceImpl" />
-	<bean id="annotatedService" class="net.cristcost.study.AnnotatedServiceImpl" />
+	<bean id="aspectProcessedService" class="net.cristcost.study.services.AspectProcessedService" />
+	<bean id="aspectSecuredService" class="net.cristcost.study.services.AspectSecuredService" />
+	<bean id="annotatedSecuredService" class="net.cristcost.study.services.AnnotatedSecuredService" />
 
 
 	<bean id="testClient" class="net.cristcost.launcher.TestClient"
 		init-method="startMe">
 		<property name="services">
 			<util:list>
-				<ref bean="testService" />
-				<ref bean="simpleService" />
-				<ref bean="annotatedService" />
+				<ref bean="aspectProcessedService" />
+				<ref bean="aspectSecuredService" />
+				<ref bean="annotatedSecuredService" />
 			</util:list>
 		</property>
 	</bean>
