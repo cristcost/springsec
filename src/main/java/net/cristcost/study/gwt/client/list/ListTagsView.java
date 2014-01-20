@@ -73,9 +73,10 @@ public interface ListTagsView extends IsWidget {
 
   /**
    * Sets the tags.
-   * 
+   *
    * @param tags the new tags
+   * @param username the username
    */
-  void setTags(List<Tag> tags);
+  void setTags(List<Tag> tags, String username);
 
 }

@@ -22,7 +22,6 @@ import net.cristcost.study.gwt.client.create.AddTagView;
 import net.cristcost.study.gwt.client.list.ListTagsView;
 import net.cristcost.study.gwt.client.utils.NavigationView;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating Client objects.
  */
@@ -76,5 +75,12 @@ public interface ClientFactory {
    * @return the tag service
    */
   GwtTagServiceAsync getTagService();
+  
+  /**
+   * Gets the current username.
+   *
+   * @return the current username
+   */
+  String getCurrentUsername();
 
 }

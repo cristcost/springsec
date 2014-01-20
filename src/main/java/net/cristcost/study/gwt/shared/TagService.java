@@ -16,7 +16,6 @@ package net.cristcost.study.gwt.shared;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface TagService.
  */
@@ -28,7 +27,7 @@ public interface TagService {
    * @param tag the tag
    * @param isPublic the is public
    */
-  void addTag(String tag, boolean isPublic);
+  void addTag(String tagUser, String tag, boolean isPublic);
 
   /**
    * Clear all tags.

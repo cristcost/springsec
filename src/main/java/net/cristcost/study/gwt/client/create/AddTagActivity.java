@@ -53,18 +53,19 @@ public class AddTagActivity extends AbstractActivity implements Presenter {
   public void addTag(String tag, boolean isPublic) {
     addTagView.setInfoMessage("Request sent...");
     addTagView.clearInput();
-    clientFactory.getTagService().addTag(tag, isPublic, new AsyncCallback<Void>() {
+    clientFactory.getTagService().addTag(clientFactory.getCurrentUsername(), tag, isPublic,
+        new AsyncCallback<Void>() {
 
-      @Override
-      public void onFailure(Throwable caught) {
-        addTagView.setErrorMessage("Tag creation failure: " + caught.getMessage());
-      }
+          @Override
+          public void onFailure(Throwable caught) {
+            addTagView.setErrorMessage("Tag creation failure: " + caught.getMessage());
+          }
 
-      @Override
-      public void onSuccess(Void result) {
-        addTagView.setInfoMessage("Tag created!");
-      }
-    });
+          @Override
+          public void onSuccess(Void result) {
+            addTagView.setInfoMessage("Tag created!");
+          }
+        });
   }
 
   /*

@@ -25,7 +25,6 @@ import net.cristcost.study.gwt.shared.Tag;
 import java.util.Iterator;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ListTagActivity.
  */
@@ -75,7 +74,7 @@ public class ListTagActivity extends AbstractActivity implements ListTagsView.Pr
             iter.remove();
           }
         }
-        listTagView.setTags(tags);
+        listTagView.setTags(tags, clientFactory.getCurrentUsername());
       }
     });
   }
@@ -98,7 +97,7 @@ public class ListTagActivity extends AbstractActivity implements ListTagsView.Pr
       public void onSuccess(List<Tag> result) {
         tags = result;
         listTagView.clearMessage();
-        listTagView.setTags(tags);
+        listTagView.setTags(tags, clientFactory.getCurrentUsername());
       }
     });
 

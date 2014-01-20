@@ -33,7 +33,7 @@ public interface GwtTagServiceAsync {
    * @param isPublic the is public
    * @param callback the callback
    */
-  void addTag(String tag, boolean isPublic, AsyncCallback<Void> callback);
+  void addTag(String tagUser, String tag, boolean isPublic, AsyncCallback<Void> callback);
 
   /**
    * Clear all tags.

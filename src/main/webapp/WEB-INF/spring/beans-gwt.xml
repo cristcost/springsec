@@ -20,6 +20,10 @@
        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 
-	<bean id="tagServiceGwtServlet" class="net.cristcost.study.gwt.server.GwtTagServiceImpl" />
+	<bean id="tagService" class="net.cristcost.study.gwt.server.TagServiceImpl" />
+
+	<bean id="tagServiceGwtServlet" class="net.cristcost.study.gwt.server.GwtTagServiceImpl">
+		<property name="implementation" ref="tagService" />
+	</bean>
 
 </beans>

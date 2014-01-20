@@ -15,9 +15,11 @@
 package net.cristcost.study.gwt.client.list;
 
 import com.google.gwt.cell.client.ButtonCell;
+import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -62,6 +64,8 @@ public class ListTagsWidget extends Composite implements ListTagsView {
   /** The presenter. */
   private Presenter presenter;
 
+  private String currentUsername;
+
   /**
    * Instantiates a new list tags widget.
    */
@@ -94,6 +98,13 @@ public class ListTagsWidget extends Composite implements ListTagsView {
       @Override
       public String getValue(Tag object) {
         return "Delete";
+      }
+
+      @Override
+      public void render(Context context, Tag object, SafeHtmlBuilder sb) {
+        if (object.getUsername() == currentUsername) {
+          super.render(context, object, sb);
+        }
       }
     };
     deleteButtonColumn.setFieldUpdater(new FieldUpdater<Tag, String>() {
@@ -165,9 +176,10 @@ public class ListTagsWidget extends Composite implements ListTagsView {
    * @see net.cristcost.study.gwt.client.list.ListTagsView#setTags(java.util.List)
    */
   @Override
-  public void setTags(List<Tag> tags) {
+  public void setTags(List<Tag> tags, String username) {
     cellTable.setRowData(0, tags);
     cellTable.setRowCount(tags.size(), true);
+    this.currentUsername = username;
   }
 
   /**

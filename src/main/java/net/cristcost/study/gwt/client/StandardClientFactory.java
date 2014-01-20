@@ -139,4 +139,11 @@ public class StandardClientFactory implements ClientFactory {
     return pageConfig;
   }
 
+  @Override
+  public String getCurrentUsername() {
+    if (getPageConfig() != null) {
+      return getPageConfig().get("username");
+    }
+    return null;
+  }
 }

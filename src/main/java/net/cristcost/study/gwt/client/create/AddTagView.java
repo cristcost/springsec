@@ -16,7 +16,6 @@ package net.cristcost.study.gwt.client.create;
 
 import com.google.gwt.user.client.ui.IsWidget;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface AddTagView.
  */
@@ -27,14 +26,6 @@ public interface AddTagView extends IsWidget {
    */
   public interface Presenter {
 
-    // note: the tag is expected to be created by the server and the username to
-    // be extracted from spring securirty context
-    /**
-     * Adds the tag.
-     * 
-     * @param tag the tag
-     * @param isPublic the is public
-     */
     void addTag(String tag, boolean isPublic);
   }
 
