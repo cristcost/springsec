@@ -78,7 +78,7 @@
 					<div class="panel panel-success">
 						<div class="panel-heading">For Admin</div>
 						<div class="panel-body">
-							<p>This section is only visible to who has the USER role</p>
+							<p>This section is only visible to who has the ADMIN role</p>
 						</div>
 					</div>
 				</div>
