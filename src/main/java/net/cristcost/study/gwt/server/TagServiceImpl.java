@@ -60,9 +60,10 @@ public class TagServiceImpl implements TagService {
     }
   }
 
-  
   @Override
-  @PostFilter("filterObject.username == principal.username or filterObject.isPublic()")
+  @PostFilter("filterObject.isPublic() or "
+      + "(principal instanceof T(org.springframework.security.core.userdetails.User)"
+      + " and filterObject.username == principal.username) ")
   public List<Tag> listTags() {
     return new ArrayList<Tag>(database);
   }

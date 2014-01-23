@@ -1,28 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
 
 <!doctype html>
 <html>
 <head>
 
-<c:set var="title" value="Secured GWT Application" />
+<c:set var="title" value="Hacked GWT Application" />
 
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title><c:out value="${title}" /></title>
 <link href="${pageContext.request.contextPath}/styles/bootstrap.min.css"
 	rel="stylesheet" media="screen">
 
-<sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal.username" var="username" />
-</sec:authorize>
-
 <script type="text/javascript">
 	var getPageConfig = {
-		"username" : "${username}",
+		"username" : "admin",
 		"tagServiceEndpoint" : "${pageContext.request.contextPath}/secured/gwt.servlet",
 	};
 </script>
@@ -57,26 +50,15 @@
 			<h1>
 				<c:out value="${title}" />
 			</h1>
-			<sec:authorize access="isAuthenticated()">
-				<p>
-					Logged as
-					<sec:authentication property="principal.username" />
-				</p>
-			</sec:authorize>
-			<sec:authorize access="!isAuthenticated()">
-				<p>You are not logged</p>
-			</sec:authorize>
+			<p>Logged as admin</p>
+			<div class="alert alert-danger">This page have been Hacked!</div>
 		</div>
 
 		<div class="row">
 			<ul class="nav nav-tabs">
 				<li><a href="#list:">List</a></li>
-				<sec:authorize access="isAuthenticated()">
-					<li><a href="#add:">Add</a></li>
-				</sec:authorize>
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<li><a href="#admin:">Admin</a></li>
-				</sec:authorize>
+				<li><a href="#add:">Add</a></li>
+				<li><a href="#admin:">Admin</a></li>
 			</ul>
 			<div id="application"></div>
 		</div>

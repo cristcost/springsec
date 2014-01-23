@@ -128,16 +128,16 @@ public class AppController {
     return "web.jquery";
   }
 
-  @RequestMapping("/gwt.hacked.html")
-  public String gwtHacked() {
-    logger.info("Accessing gwt.hacked page");
-    return "gwt.hacked";
-  }
-
   @RequestMapping("/gwt.secured.html")
   public String gwtSecured() {
     logger.info("Accessing gwt.secured page");
     return "gwt.secured";
+  }
+
+  @RequestMapping("/gwt.hacked.html")
+  public String gwtHacked() {
+    logger.info("Accessing gwt.hacked page");
+    return "gwt.hacked";
   }
 
 }
