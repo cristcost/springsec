@@ -16,7 +16,7 @@
 
 	<packaging>war</packaging>
 	<name>Cristcost :: Test Spring Security</name>
-
+	
 	<dependencies>
 		<!-- Spring Dependencies -->
 		<dependency>
@@ -190,7 +190,7 @@
 					<archive>
 						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
-					<webResources>						
+					<webResources>
 						<resource>
 							<directory>${project.build.directory}/gwt-webapp</directory>
 						</resource>
@@ -306,6 +306,15 @@
 							org.springframework.aop,
 							org.springframework.aop.framework,
 							org.aopalliance.aop,
+							
+							!com.google.gwt.activity.*,
+							!com.google.gwt.cell,
+							!com.google.gwt.*.client.*,
+							!com.google.gwt.event.shared,
+							!com.google.gwt.place.shared,
+							!com.google.gwt.safehtml.shared,
+
+							
 							<!-- org.springframework.format.support, -->
 							<!-- org.springframework.beans.factory, -->
 							<!-- org.springframework.core.convert.support, -->

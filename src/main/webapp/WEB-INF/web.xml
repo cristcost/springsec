@@ -34,11 +34,11 @@
 		</param-value>
 	</context-param>
 
-	<!-- <context-param> -->
-	<!-- <param-name>contextClass</param-name> -->
-	<!-- <param-value>org.springframework.osgi.web.context.support.OsgiBundleXmlWebApplicationContext -->
-	<!-- </param-value> -->
-	<!-- </context-param> -->
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.osgi.web.context.support.OsgiBundleXmlWebApplicationContext
+		</param-value>
+	</context-param>
 
 	<!-- Spring Security -->
 	<filter>
@@ -69,5 +69,6 @@
 	<!-- <taglib-uri>http://www.springframework.org/tags</taglib-uri> -->
 	<!-- <taglib-location>/WEB-INF/tld/spring.tld</taglib-location> -->
 	<!-- </taglib> -->
+	<!-- etc... -->
 
 </web-app>
