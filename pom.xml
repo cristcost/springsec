@@ -16,7 +16,7 @@
 
 	<packaging>war</packaging>
 	<name>Cristcost :: Test Spring Security</name>
-	
+
 	<dependencies>
 		<!-- Spring Dependencies -->
 		<dependency>
@@ -302,11 +302,21 @@
 
 							<!-- extra imports detected manually -->
 							org.springframework.security.access.expression.method,
-							<!-- org.springframework.security.config.method, -->
+							org.springframework.security.core.userdetails,
 							org.springframework.aop,
 							org.springframework.aop.framework,
 							org.aopalliance.aop,
-							
+
+							<!-- manage imports for GWT, yes it sucks what you need to do... -->
+							com.google.gwt.user.client.rpc,
+							com.google.gwt.user.client.rpc.core.com.google.gwt.core.shared,
+							com.google.gwt.user.client.rpc.core.java.lang,
+							com.google.gwt.user.client.rpc.core.java.math,
+							com.google.gwt.user.client.rpc.core.java.sql,
+							com.google.gwt.user.client.rpc.core.java.util,
+							com.google.gwt.user.client.rpc.core.java.util.logging,
+							com.google.gwt.user.server.rpc.core.java.lang,
+							com.google.gwt.user.server.rpc.core.java.util,
 							!com.google.gwt.activity.*,
 							!com.google.gwt.cell,
 							!com.google.gwt.*.client.*,
@@ -314,7 +324,7 @@
 							!com.google.gwt.place.shared,
 							!com.google.gwt.safehtml.shared,
 
-							
+
 							<!-- org.springframework.format.support, -->
 							<!-- org.springframework.beans.factory, -->
 							<!-- org.springframework.core.convert.support, -->

@@ -24,8 +24,9 @@
 
 	<aop:config>
 		<aop:aspect ref="testAspect">
-			<aop:around method="traceInvocation"
-				pointcut="within(net.cristcost.study.services.AspectProcessedService)" />
+			<!-- <aop:around method="traceInvocation" -->
+			<!-- pointcut="within(net.cristcost.study.services.AspectProcessedService)" 
+				/> -->
 			<!-- <aop:around method="traceInvocation" -->
 			<!-- pointcut="execution(* net.cristcost.study.services.TestServiceImpl.service*(..)) 
 				and within(net.cristcost.study.services.*)" /> -->
